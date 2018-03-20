@@ -1,0 +1,32 @@
+//
+   Created by Lenovo on 2018/3/5.
+extends ../layout
+
+
+block content
+    include ../Public/main-header
+    include ../Public/left-menu
+    div.content-wrapper
+        section.content-header
+            h1 Blank Page
+                small it all starts here
+            ol.breadcrumb
+                li
+                    a(href="#")
+                        i.fa.fa-dashboard  Home
+                li
+                    a(href="#") Examples
+
+                li.active
+                    a(href="#") Blank page
+        section.content
+            div.box
+                div.box-header.with-border
+                    h3.box-title Title
+                    div.box-tools.pull-right
+                        button.btn.btn-box-tool(type="button" data-widget="collapse" data-toggle="tooltip" title="Collapse")
+                            i.fa.fa-minus
+                        button.btn.btn-box-tool(type="button" data-widget="remove" data-toggle="tooltip" title="Remove")
+                            i.fa.fa-times
+                div.box-body Start creating your amazing application!
+                div.box-footer Footer

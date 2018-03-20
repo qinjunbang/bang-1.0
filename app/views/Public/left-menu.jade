@@ -1,0 +1,31 @@
+//
+   Created by Lenovo on 2018/3/5.
+
+aside.main-sidebar
+    section.sidebar
+        div.user-panel
+            div.pull-left.image
+                img.img-circle(src='/AdminLTE-2.4.3/dist/img/user2-160x160.jpg' alt="User Image")
+            div.pull-left.info
+                if userInfo
+                    p #{userInfo.name}
+                    a(href="javascript:void(0)")
+                        i.fa.fa-circle.text-success  在线
+        ul.sidebar-menu(data-widget="tree")
+            li.header 系统菜单
+            li.treeview(data="系统管理")
+                a(href="#")
+                    i.fa.fa-asterisk
+                    span  系统管理
+                    span.pull-right-container
+                        i.fa.fa-angle-left.pull-right
+                ul.treeview-menu
+                    li
+                        a(href="/bill")
+                            i.fa.fa-file-text-o  账单管理
+                    li
+                        a(href="/user/index")
+                            i.fa.fa-user-o  管理员列表
+                    li
+                        a(href="#")
+                            i.fa.fa-users  管理组列表

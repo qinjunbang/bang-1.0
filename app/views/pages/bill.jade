@@ -1,0 +1,163 @@
+//Created by Lenovo on 2018/3/5.
+extends ../layout
+
+block content
+    case action
+        when 'index'
+            include ../Public/main-header
+            include ../Public/left-menu
+            div.content-wrapper
+                section.content-header
+                    h1 账单管理
+                    ol.breadcrumb
+                        li
+                            a(href="#")
+                                i.fa.fa-dashboard   首页
+                        li
+                            a(href="#") 账单管理
+                        li.active 列表
+                section.content
+                    div.box-body
+                        div.box
+                            div.box-header.row
+                                div.btn-group.col-sm-5(role="group")
+                                    a.btn.btn-default(onclick="add('/bill/edit/', 300)")
+                                        i.fa.fa-plus  新增
+                                    a.btn.btn-default(onclick="edit('/bill/edit', '#formList', 300)")
+                                        i.fa.fa-file-text-o  编辑
+                                    a.btn.btn-default(onclick="add()")
+                                        i.fa.fa-search  查看
+                                    a.btn.btn-default(onclick="del('/bill/del', '#formList')")
+                                        i.fa.fa-trash  删除
+                            div.box-body
+                                form#formList
+                                    table#tableList.table.table-bordered.table-striped
+                                        thead
+                                            tr
+                                                th
+                                                    input#checkAll.minimal(type="checkbox")
+                                                th ID
+                                                th 金额
+                                                th 场景
+                                                th 支付方式
+                                                th 添加日期
+                                                th 更新时间
+                                        tfoot
+                                            tr
+                                                th.text-right(colspan="6") 当前页合计
+                                                th
+                                                    span#pageTotal
+                                            tr
+                                                th.text-right(colspan="6") 总计
+                                                th
+                                                    span#total
+                                        tfoot
+                                        <tbody>
+                                        each item in data
+                                            tr
+                                                td.checkBox
+                                                    input.minimal(type="checkbox" value="#{item.id}" name="id")
+                                                td #{item.id}
+                                                td #{item.money}
+                                                td #{item.scene}
+                                                td #{item.pay_way}
+                                                td #{moment(item.add_time).format("YYYY-MM-DD hh:mm:ss")}
+                                                td #{moment(item.updateAt).format("YYYY-MM-DD hh:mm:ss")}
+                                        </tbody>
+
+            script(type="text/javascript").
+                $(document).ready(function () {
+                    $("#tableList").DataTable({
+                        lengthChange: true,
+                        searching: true,
+                        ordering: true,
+                        paging: true,
+                        lengthMenu: [
+                            [10, 25, 50, -1],
+                            ['10', '25', '50', '所有']
+                        ],
+                        oLanguage: {
+                            sInfo: '从 _START_ 到 _END_ /共 _TOTAL_ 条数据',
+                            sLengthMenu: '显示  _MENU_  条',
+                            sSearch: '查找',
+                            oPaginate: {
+                                sNext: '下一页',
+                                sPrevious: '上一页',
+                                sFirst: '首页',
+                                sLast: '尾页'
+                            }
+                        },
+                        footerCallback: function (row, data, start, end, display) {
+                            var api = this.api();
+
+                            var intval = function (i) {
+                                return typeof i === 'string' ? i * 1 : typeof i === 'number' ? i : 0;
+                            };
+
+                            var total = 0,
+                                pageTotal = 0;
+
+                            // 所有合计
+                            total = api.column(2).data().reduce(function (a, b) {
+                                return intval(a) + intval(b);
+                            }, 0);
+
+                            // 当前页合计
+                            pageTotal = api.column(2, {page: 'current'}).data().reduce(function (a, b) {
+                                return intval(a) + intval(b);
+                            }, 0);
+
+                            $("#total").html(total.toFixed(2));
+                            $("#pageTotal").html(pageTotal.toFixed(2));
+                            $('input').iCheck({
+                                checkboxClass: 'icheckbox_square-blue',
+                                radioClass: 'iradio_square-blue',
+                                increaseArea: '20%' /* optional */,
+                            });
+                            $('#checkAll').on('ifChecked', function (event) {
+                                $(".checkBox input").iCheck("check");
+                            });
+                            $('#checkAll').on('ifUnchecked', function (event) {
+                                $(".checkBox input").iCheck("uncheck");
+                            })
+                        }
+                    });
+
+                });
+        when 'edit'
+            div.box.box-info.module-box-l
+                form#info.form-horizontal(name="info")
+                    input(type="hidden" id="id" name="id" value="#{data.id}")
+                    div.box-body
+                        div.form-group
+                            label.control-label.col-xs-3.col-sm-2.text-right 金额
+                            div.col-xs-8.col-sm-10
+                                input.form-control(type="number" value="#{data.money}" id="money" name="money" placeholder="请输入金额")
+                        div.form-group
+                            label.control-label.col-xs-3.col-sm-2.text-right 场景
+                            div.col-xs-8.col-sm-10
+                                input.form-control(type="text" value="#{data.scene}" id="scene" name="scene" placeholder="请输入场景")
+                        div.form-group
+                            label.control-label.col-xs-3.col-sm-2.text-right 支付方式
+                            div.col-xs-8.col-sm-10
+                                select.form-control(id="pay_way" name="pay_way")
+                                    if data.pay_way
+                                        option(value="现金支付" selected= data.pay_way === '现金支付') 现金支付
+                                        option(value="微信支付" selected= data.pay_way === '微信支付') 微信支付
+                                        option(value="支付宝支付" selected =data.pay_way === '支付宝支付') 支付宝支付
+                                        option(value="其他" selected= data.pay_way === '其他') 其他
+                                    else
+                                        option(value="现金支付") 现金支付
+                                        option(value="微信支付") 微信支付
+                                        option(value="支付宝支付") 支付宝支付
+                                        option(value="其他") 其他
+                        div.form-group
+                            label.control-label.col-xs-3.col-sm-2.text-right 使用日期
+                            div.col-xs-8.col-sm-10
+                                input.form-control(type="text" value="#{moment(data.add_time).format('YYYY-MM-DD hh:mm:ss')}" id="add_time" name="add_time" placeholder="请选择使用日期")
+                    div.box-footer
+                        button.btn.btn-default.pull-right(type="button" onclick="save('/bill/add', '#info')") 提交
+
+
+
+

@@ -1,0 +1,52 @@
+//
+   Created by Lenovo on 2018/3/16.
+doctype
+html
+    head
+        meta(charset="utf-8")
+        meta(http-equiv="X-UA-Compatible" content="IE=edge")
+        title 登录页面
+        meta(content="width=device-width,initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport")
+        script(src="/adminlte_common.js")
+        script(src="/common.js")
+    body.hold-transition.login-page
+        block content
+            div.login-box
+                div.login-logo
+                    a(href='')
+                        b Admmin LTE
+                div.login-box-body
+                    p.login-box-msg 请您登录
+                    form(action="" method="post" name="info" id="info")
+                        div.form-group.has-feedback
+                            input.form-control(type="text" name="user_name" id="user_name" placeholder="注册的用户名、手机号、邮箱")
+                            span.glyphicon.glyphicon-envelope.form-control-feedback
+                        div.form-group.has-feedback
+                            input.form-control(type="password" name="password" id="password" placeholder="请输入密码")
+                            span.glyphicon.glyphicon-lock.form-control-feedback
+                        //div.form-group.has-feedback.row
+                            div.col-sm-8
+                                input.form-control(type="text" placeholder="输入验证码")
+                        div.form-group.has-feedbacd
+                            button.btn.btn-primary(type="button" onclick="login()") 登录系统
+    script(type="text/javascript").
+        function login () {
+            console.log("6666");
+            if ($("#user_name").val() === '') {
+                showModal("用户名不能为空！");
+                return;
+            }
+            if ($("#password").val() === '') {
+                showModal("密码不能为空！");
+                return;
+            }
+           saveForm("/login", "#info", function (res) {
+               if (res.status === 1) {
+                   showModal(res.info, 0, function () {
+                       window.location.href = '/';
+                   });
+               } else {
+                   showModal(res.info);
+               }
+           });
+        }

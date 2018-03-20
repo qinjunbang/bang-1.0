@@ -1,0 +1,57 @@
+//
+   Created by Lenovo on 2018/3/16.
+doctype
+html
+    head
+        meta(charset="utf-8")
+        meta(http-equiv="X-UA-Compatible" content="IE=edge")
+        title 注册页面
+        meta(content="width=device-width,initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport")
+        script(src="/adminlte_common.js")
+        script(src="/common.js")
+    body.hold-transition.login-page
+        block content
+            div.login-box
+                div.login-logo
+                    a(href='')
+                        b Admmin LTE
+                div.login-box-body
+                    p.login-box-msg 注册账号
+                    form(action="" method="post" name="info" id="info")
+                        div.form-group.has-feedback
+                            input.form-control(type="text" name="name" id="name" placeholder="用户名、手机号")
+                            span.glyphicon.glyphicon-user.form-control-feedback
+                        div.form-group.has-feedback
+                            input.form-control(type="email" name="email" id="email" placeholder="请输入邮箱")
+                            span.glyphicon.glyphicon-envelope.form-control-feedback
+                        div.form-group.has-feedback
+                            input.form-control(type="password" name="password" id="password" placeholder="请输入密码")
+                            span.glyphicon.glyphicon-lock.form-control-feedback
+                        div.form-group.has-feedback
+                            input.form-control(type="password" name="retype_password" id="retype_password" placeholder="再次输入密码")
+                            span.glyphicon.glyphicon-lock.form-control-feedback
+                        div.form-group.has-feedback
+                            button.btn.btn-primary(type="button" onclick="register()") 提交
+    script(type="text/javascript").
+        function register () {
+            if ($("#user_name").val() === '') {
+                showModal("用户名不能为空！");
+                return;
+            }
+            if ($("#password").val() === '') {
+                showModal("密码不能为空！");
+                return;
+            }
+            if ($("#password").val() !== $("#retype_password").val()) {
+                showModal("两次输入的密码不一致！");
+                return;
+            }
+           saveForm("/register", "#info", function (res) {
+               console.log(res);
+               if (res.status === 1) {
+                   showModal(res.info, 1);
+               } else {
+                   showModal(res.info);
+               }
+           });
+        }
