@@ -27,7 +27,12 @@ exports.login = function (req, res) {
             if (!user) {
                 res.json({info: "用户名或密码错误!", status: 0, data: []});
             }
-
+            if (user.status === 0) {
+                res.json({info: "等待超级管理员审核！", status: 0, data: []});
+            }
+            if (user.status === 2) {
+                res.json({info: "审核失败！", status: 0, data: []});
+            }
             user.comparePassword(_user.password, function (err, isMatch) {
                 if (err) {
                     res.json({info: "报错了！", status: 0, data: err})

@@ -51,7 +51,7 @@ exports.add = function (req, res) {
                 console.log(err);
                 res.json({info: "修改失败！", status: 0, data: err});
             } else {
-                if (data.password === '') {
+                if (!data.password || data.password === '') {
                     data.password = user.password;
                 }
                 var _user = _.extend(user, data);

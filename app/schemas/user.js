@@ -38,21 +38,23 @@ UserSchema.pre('save', function (next) {
     } else {
         this.updateAt = Date.now();
     }
-
-    bcrypt.genSalt(10, function (err, salt) {
-        if (err) {
-            return next(err);
-        }
-
-        bcrypt.hash(user.password, salt, function (err, hashPwd) {
+    if (user.password.length < 16) {
+        bcrypt.genSalt(10, function (err, salt) {
             if (err) {
                 return next(err);
             }
 
-            user.password = hashPwd;
-            next();
+            bcrypt.hash(user.password, salt, function (err, hashPwd) {
+                if (err) {
+                    return next(err);
+                }
+
+                user.password = hashPwd;
+                next();
+            });
         });
-    });
+    }
+    next();
 });
 UserSchema.methods = {
     comparePassword: function (_password, cb) {
