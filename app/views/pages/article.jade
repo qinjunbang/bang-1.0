@@ -1,0 +1,124 @@
+//Created by Lenovo on 2018/4/17.
+extends ../layout
+
+block content
+    include ../Public/main-header
+    include ../Public/left-menu
+    case action
+        when "index"
+            div.content-wrapper
+                section.content-header
+                    h1 文章管理
+                    ol.breadcrumb
+                        li
+                            a(href="#")
+                                i.fa.fa-dashboard   首页
+                        li
+                            a(href="#") 文章管理
+                        li.active 列表
+                section.content
+                    div.box-body
+                        div.box
+                            div.box-header.row
+                                div.btn-group.col-sm-5(role="group")
+                                    a.btn.btn-default(href="./article/edit")
+                                        i.fa.fa-plus  新增
+                                    a.btn.btn-default
+                                        i.fa.fa-file-text-o  编缉
+                                    a.btn.btn-default
+                                        i.fa.fa-search  查看
+                                    a.btn.btn-default
+                                        i.fa.fa-trash   删除
+                            div.box-body
+                                form#formList
+                                    table#tableList.table.table-bodered.table-striped
+                                        thead
+                                            tr
+                                                th
+                                                    input#checkAll.minimal(type="checkbox")
+                                                th  ID
+                                                th  标题
+                                                th  简介
+                                                th  缩略图
+                                                th  添加时间
+                                        <tbody>
+                                        each item in data
+                                            tr
+                                                td.checkBox
+                                                    input.minimal(type="checkbox" value="" name="id")
+                                                td #{item.id}
+                                                td #{item.title}
+                                                td #{item.summary}
+                                                td #{item.img}
+                                                td #{item.add_time}
+                                        </tbody>
+                script(type="text/javascript").
+                    $(document).ready(function () {
+                        $("#tableList").DataTable({
+                            lengthChange: true,
+                            searching: true,
+                            ordering: true,
+                            paging: true,
+                            lengthMenu: [
+                                [10, 25, 50, -1],
+                                ["10", "25", "50", "所有"]
+                            ],
+                            oLanguage: {
+                                sInfo: "从 _START_ 到 _END_ /共 _TOTAL_ 条数据",
+                                sLengthMenu: "显示 _MENU_ 条",
+                                sSearch: "查找",
+                                oPaginate: {
+                                    sNext: "下一页",
+                                    sPrevious: "上一页",
+                                    sFirst: "首页",
+                                    sEnd: "尾页"
+
+                                }
+                            },
+                            footerCallback: function (row, data, start, end, display) {
+                                $("input").iCheck({
+                                    checkboxClass: "icheckbox_square-blue",
+                                    radioClass: 'iradio_square-blue',
+                                    increaseArea: '20%' /* optional */
+                                });
+
+                                $("#checkAll").on("ifChecked", function (event) {
+                                    $(".checkbox input").iCheck("check");
+                                });
+                                $("#checkAll").on("ifUnChecked", function (event) {
+                                    $(".checkbox input").iCheck("uncheck");
+                                });
+                            }
+                        });
+                    });
+
+        when "edit"
+            script(src="/showdown-master/dist/showdown.min.js")
+            div.content-wrapper
+                section.content-header
+                    h1 文章编辑
+                    ol.breadcrumb
+                        li
+                            a(href="#")
+                                i.fa.fa-dashboard 首页
+                        li
+                            a(href="#") 文章管理
+                        li.active   文章编写
+                section.content
+                    div.box.row
+                        div.col-sm-6
+                            textarea#writeArticle.form-control(rows="20")
+                        div.col-sm-6
+                            div#showArticle
+            script(type="text/javascript").
+                $(document).ready(function () {
+                    var converter = new showdown.Converter(),
+                        text = "",
+                        html = "";
+                    $("#writeArticle").on("keyup", function () {
+                        text = $(this).val();
+                        html = converter.makeHtml(text);
+                        $("#showArticle").html(html);
+                    });
+
+                });
