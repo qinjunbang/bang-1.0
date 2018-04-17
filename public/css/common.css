@@ -1,5 +1,20 @@
+.font-24 {
+    font-size: 24px;
+}
+.font-30 {
+    font-size: 30px;
+}
 .module-box-l {
     border: none;
     margin: 0;
     border-radius: 0;
+}
+.article-title {
+    color: #666;
+    padding: 0 80px 10px 40px;
+    line-height: 30px;
+    border: none;
+    outline: none;
+    border-radius: 0;
+    height: auto;
 }
