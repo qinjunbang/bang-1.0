@@ -4,6 +4,7 @@
 var Index = require('../app/controllers/index');
 var Bill = require('../app/controllers/bill');
 var User = require('../app/controllers/user');
+var Article = require('../app/controllers/article');
 var bodyParser = require('body-parser');
 var jsonParser = bodyParser.json(); // create application/json parser
 var urlencodedParser = bodyParser.urlencoded({ extended: false }); // create application/x-www-form-urlencoded parser
@@ -29,5 +30,7 @@ module.exports = function (app) {
     app.post('/user/add', urlencodedParser, User.add);
     app.get('/user/edit/:id', User.edit);
     app.get('/user/edit', User.edit);
+    app.get('/article', Article.index);
+    app.get('/article/edit', Article.index.edit);
 };
 
