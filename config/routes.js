@@ -6,6 +6,9 @@ var Bill = require('../app/controllers/bill');
 var User = require('../app/controllers/user');
 var Article = require('../app/controllers/article');
 var bodyParser = require('body-parser');
+//引入图片上传模块
+var formidable = require('formidable');
+var fs = require('fs');
 var jsonParser = bodyParser.json(); // create application/json parser
 var urlencodedParser = bodyParser.urlencoded({ extended: false }); // create application/x-www-form-urlencoded parser
 
@@ -32,5 +35,96 @@ module.exports = function (app) {
     app.get('/user/edit', User.edit);
     app.get('/article', Article.index);
     app.get('/article/edit', Article.index.edit);
+
+    //上传图片
+    app.post('/imagesUpload', function (req, res) {
+        var form = formidable.IncomingForm();
+
+        form.encoding = "utf-8";
+        form.uploadDir = "./public/uploads/";
+        form.keepExtensions = true;
+        form.maxFiledsSize = 1 * 1024 *1024;
+
+        form.parse(req, function (err, fields, files) {
+            console.log("form", form);
+            console.log("err", err);
+            console.log("fields", fields);
+            console.log("files", files);
+            if (err) {
+                return res.json({
+                    status: 0,
+                    err: err,
+                    info: "上传出错!"
+                });
+            }
+
+            if (files.img.size > form.maxFiledsSize) {
+                fs.unlink(files.img.path);
+                return res.json({
+                    status: 0,
+                    err: 401,
+                    info: "图片应小于2M"
+                });
+            }
+
+            var extName = ''; //后缀名
+            switch (files.img.type) {
+                case 'image/pjpeg':
+                    extName = 'jpg';
+                    break;
+                case 'image/jpeg':
+                    extName = 'jpg';
+                    break;
+                case 'image/png':
+                    extName = 'png';
+                    break;
+                case 'image/x-png':
+                    extName = 'png';
+                    break;
+            }
+
+            if (extName.length == 0) {
+                return res.json({
+                    err: 404,
+                    info: "只支持png和jpg格式图片"
+                });
+            }
+
+
+            //生成时间戳
+            var timestamp = Date.now();
+
+            //生成随机数
+            var ran = parseInt(Math.random() * 8999 + 10000);
+
+            // 生成新图片名称
+            var imageName = timestamp + ran + '.' + extName;
+
+            // 新图片路径
+            var newPath = form.uploadDir + timestamp + "/" + imageName;
+
+            fs.mkdirSync(form.uploadDir + timestamp);
+
+            // 更改名字和路径
+            fs.rename(files.img.path, newPath, function (err) {
+
+                if (err) {
+                    console.log("err", err);
+                    return res.json({
+                        status: 0,
+                        err: 401,
+                        info: "图片上传失败"
+                    });
+                }
+                return res.json({
+                    status: 1,
+                    err: 200,
+                    info: "上传成功",
+                    data: "/uploads/" + imageName
+                });
+            })
+        });
+
+    })
 };
 

@@ -20,3 +20,8 @@ exports.index.edit = function (req, res) {
         title: '新增文章'
     });
 };
+
+// 图片上传
+exports.index.upload = function (req, res) {
+
+};

@@ -182,3 +182,59 @@ function showIframeModal(url, height, cb) {
     }
 
 }
+
+// 上传图片模态框
+function showImageModal () {
+    var htmlText = [];
+    htmlText.push("<div class='modal fade' id='imageModal' role='dialog'>");
+    htmlText.push("<div class='modal-dialog modal-sm' role='document'>");
+    htmlText.push("<div class='modal-content'>");
+    htmlText.push("<div class='modal-header'>");
+    htmlText.push("<button type='button' class='close' data-dismiss='modal' aria-label='Close'>");
+    htmlText.push("<span aria-hidden='true'>");
+    htmlText.push("&times;");
+    htmlText.push("</span>");
+    htmlText.push("</button>");
+    htmlText.push("<h4 class='modal-title'>");
+    htmlText.push("提示");
+    htmlText.push("</h4>");
+    htmlText.push("</div>");
+    htmlText.push("<div class='modal-body'>");
+    htmlText.push("<form id='img-form' enctype='multipart/form-data'>");
+    htmlText.push("<label for='img-file' class='img-label bg-success'>点击上传图片</label>");
+    htmlText.push("<input type='file' name='img' id='img-file' multiple='multiple' accept='image/*' onchange='uploadsImages();'/>");
+    htmlText.push("</div>");
+    htmlText.push("<div class='modal-footer'>");
+    htmlText.push("<button type='button' class='btn btn-default' data-dismiss='modal'> 关闭</button>");
+    htmlText.push("</div>");
+    htmlText.push("</div>");
+    htmlText.push("</div>");
+    htmlText.push("</div>");
+
+    $("body").append(htmlText.join(""));
+    $("#imageModal").modal('show');
+}
+
+// 上传图片
+function uploadsImages () {
+    console.log("6666");
+    var form = $("#img-form")[0];
+    var formData = new FormData(form);
+
+    $.ajax({
+        type: "POST",
+        data: formData,
+        url: '/imagesUpload',
+        processData: false,
+        contentType: false,
+        success: function (res) {
+            console.log(res);
+        },
+        error: function (err) {
+            console.log("err", err);
+        }
+    });
+}
+$("#img-file").change(function () {
+
+});

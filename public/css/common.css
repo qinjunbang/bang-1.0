@@ -84,3 +84,13 @@ h1.article-title {
     border-top: 1px solid transparent;
     padding: 20px 20px 80px;
 }
+.img-label {
+    display: block;
+    cursor: pointer;
+    height: 42px;
+    text-align: center;
+    line-height: 42px;
+}
+#img-file {
+    display: none;
+}
