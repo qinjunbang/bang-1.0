@@ -22,6 +22,9 @@ db.once('open', function () {
 });
 
 // models loading
+// 也可以一个一个加载  例:
+// var BillModels = require('./app/models/bill');
+// var UserModels = require('./app/models/user');
 var models_path = __dirname + '/app/models';
 var walk = function(path) {
     fs
