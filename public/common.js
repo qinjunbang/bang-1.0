@@ -228,10 +228,10 @@ function uploadsImages () {
         contentType: false,
         success: function (res) {
             console.log(res);
-            var imgUrl = window.location.origin + res.data;
-            var text = "![" + res.data + "](" + imgUrl + ")";
+            var imgUrl = window.location.origin + res.data.url;
+            var text = "![" + res.data.name + "](" + imgUrl + ")";
             var str = $("#writeArticle").val();
-            $("#writeArticle").val(str + "<br>" + text);
+            $("#writeArticle").val(str + text + "  ");
             $("#imageModal").modal("hide");
             $("#writeArticle").focus();
         },

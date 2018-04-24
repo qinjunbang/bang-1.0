@@ -89,6 +89,10 @@ h1.article-title {
     word-wrap: break-word; //只对英文起作用，以单词作为换行依据。
     white-space: pre-wrap; //只对中文起作用，强制换行。
 }
+#showArticle img {
+    display: block;
+    margin: 0 auto;
+}
 .img-label {
     display: block;
     cursor: pointer;

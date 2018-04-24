@@ -128,7 +128,10 @@ module.exports = function (app) {
                 return res.json({
                     status: 1,
                     info: "上传成功",
-                    data: "/uploads/" + timestamp  + "/" + imageName
+                    data: {
+                        url:"/uploads/" + timestamp  + "/" + imageName,
+                        name: imageName
+                    }
                 });
             })
         });
