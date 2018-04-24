@@ -72,7 +72,7 @@ h1.article-title {
     outline: none;
     -webkit-appearance: none;
     overflow: auto;
-    height: 84.4vh;
+    height: 79.4vh;
 }
 #showArticle {
     background-color: #fcfaf2;
@@ -84,12 +84,19 @@ h1.article-title {
     border-top: 1px solid transparent;
     padding: 20px 20px 80px;
 }
+#showArticle p {
+    word-break: break-all; //只对英文起作用，以字母作为换行依据。
+    word-wrap: break-word; //只对英文起作用，以单词作为换行依据。
+    white-space: pre-wrap; //只对中文起作用，强制换行。
+}
 .img-label {
     display: block;
     cursor: pointer;
     height: 42px;
     text-align: center;
     line-height: 42px;
+    background: #333;
+    color: #fff;
 }
 #img-file {
     display: none;

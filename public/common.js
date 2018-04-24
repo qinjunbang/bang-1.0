@@ -205,7 +205,7 @@ function showImageModal () {
     htmlText.push("<input type='file' name='img' id='img-file' multiple='multiple' accept='image/*' onchange='uploadsImages();'/>");
     htmlText.push("</div>");
     htmlText.push("<div class='modal-footer'>");
-    htmlText.push("<button type='button' class='btn btn-default' data-dismiss='modal'> 关闭</button>");
+    htmlText.push("<a data-dismiss='modal'> 关闭</a>");
     htmlText.push("</div>");
     htmlText.push("</div>");
     htmlText.push("</div>");
@@ -217,7 +217,6 @@ function showImageModal () {
 
 // 上传图片
 function uploadsImages () {
-    console.log("6666");
     var form = $("#img-form")[0];
     var formData = new FormData(form);
 
@@ -229,6 +228,12 @@ function uploadsImages () {
         contentType: false,
         success: function (res) {
             console.log(res);
+            var imgUrl = window.location.origin + res.data;
+            var text = "![" + res.data + "](" + imgUrl + ")";
+            var str = $("#writeArticle").val();
+            $("#writeArticle").val(str + "<br>" + text);
+            $("#imageModal").modal("hide");
+            $("#writeArticle").focus();
         },
         error: function (err) {
             console.log("err", err);

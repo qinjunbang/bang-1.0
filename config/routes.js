@@ -6,6 +6,7 @@ var Bill = require('../app/controllers/bill');
 var User = require('../app/controllers/user');
 var Article = require('../app/controllers/article');
 var bodyParser = require('body-parser');
+var moment = require('moment');
 //引入图片上传模块
 var formidable = require('formidable');
 var fs = require('fs');
@@ -100,14 +101,22 @@ module.exports = function (app) {
             // 生成新图片名称
             var imageName = timestamp + ran + '.' + extName;
 
+            timestamp = moment(timestamp).format("YYYY-MM-DD");
+
             // 新图片路径
             var newPath = form.uploadDir + timestamp + "/" + imageName;
 
-            fs.mkdirSync(form.uploadDir + timestamp);
+            // 创建文件夹
+            fs.exists(form.uploadDir + timestamp, function (hasDir) {
+                if(hasDir) {
+                    console.log("文件夹已经存在！");
+                } else {
+                    fs.mkdirSync(form.uploadDir + timestamp);
+                }
+            });
 
             // 更改名字和路径
             fs.rename(files.img.path, newPath, function (err) {
-
                 if (err) {
                     console.log("err", err);
                     return res.json({
@@ -118,9 +127,8 @@ module.exports = function (app) {
                 }
                 return res.json({
                     status: 1,
-                    err: 200,
                     info: "上传成功",
-                    data: "/uploads/" + imageName
+                    data: "/uploads/" + timestamp  + "/" + imageName
                 });
             })
         });
