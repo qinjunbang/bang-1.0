@@ -45,7 +45,7 @@ exports.index.edit = function (req, res) {
     }
 };
 
-// 报存数据
+// 保存数据
 exports.add = function (req, res) {
     var data = req.body;
     if (data.id && data.id !== '') {

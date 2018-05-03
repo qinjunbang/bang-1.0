@@ -20,7 +20,7 @@ function add (url, height) {
 }
 
 // 编辑
-function edit (url, formId, height) {
+function edit (url, formId, height, type) {
     var objForm = '';
 
     if (formId.indexOf("#") >= 0) {
@@ -43,7 +43,11 @@ function edit (url, formId, height) {
     }
 
     url = url + "/" + data[1].value;
-    showIframeModal(url, height);
+    if (type === 'skip') {
+        location.href = url
+    } else {
+        showIframeModal(url, height);
+    }
 }
 
 // 删除
@@ -185,6 +189,8 @@ function showIframeModal(url, height, cb) {
 
 // 上传图片模态框
 function showImageModal () {
+    console.log(window.getSelection());
+    console.log(document.getSelection());
     var htmlText = [];
     htmlText.push("<div class='modal fade' id='imageModal' role='dialog'>");
     htmlText.push("<div class='modal-dialog modal-sm' role='document'>");
@@ -230,16 +236,21 @@ function uploadsImages () {
             console.log(res);
             var imgUrl = window.location.origin + res.data.url;
             var text = "![" + res.data.name + "](" + imgUrl + ")";
-            var str = $("#writeArticle").val();
-            $("#writeArticle").val(str + text + "  ");
+
+            var texteare = document.getElementById('writeArticle');
+            //获得光标位置或者选中的文本
+            if (window.getSelection) {
+                texteare.setRangeText(text); //在光标处插入或者选中文本替换
+                texteare.selectionStart += text.length;
+                var converter = new showdown.Converter();
+                var html = converter.makeHtml(texteare.value);
+                $("#showArticle").html(html);
+                texteare.focus();
+            }
             $("#imageModal").modal("hide");
-            $("#writeArticle").focus();
         },
         error: function (err) {
             console.log("err", err);
         }
     });
 }
-$("#img-file").change(function () {
-
-});

@@ -12,4 +12,5 @@
 `npm install body-parser` -- 对post请求的请求体进行解析    
 `npm install bcrypt` -- 对用户提交的密码进行加密运算    
 `npm install formidable --save ` -- 图片上传模块
+`npm install showdown --save`   -- 安装showdown.js
 

@@ -36,9 +36,12 @@ module.exports = function (app) {
     app.get('/user/edit', User.edit);
     app.get('/article', Article.index);
     app.get('/article/edit', Article.index.edit);
+    app.get('/article/edit/:id', Article.index.edit);
+    app.post('/article/add', urlencodedParser, Article.index.add);
+    app.post('/article/del', urlencodedParser, Article.index.del);
 
     //上传图片
-    app.post('/imagesUpload', function (req, res) {
+    app.post('/imagesUpload', function (req, res, next) {
         var form = formidable.IncomingForm();
 
         form.encoding = "utf-8";
@@ -47,10 +50,7 @@ module.exports = function (app) {
         form.maxFiledsSize = 1 * 1024 *1024;
 
         form.parse(req, function (err, fields, files) {
-            console.log("form", form);
-            console.log("err", err);
-            console.log("fields", fields);
-            console.log("files", files);
+
             if (err) {
                 return res.json({
                     status: 0,
@@ -108,32 +108,32 @@ module.exports = function (app) {
 
             // 创建文件夹
             fs.exists(form.uploadDir + timestamp, function (hasDir) {
-                if(hasDir) {
-                    console.log("文件夹已经存在！");
-                } else {
+                if(!hasDir) {
                     fs.mkdirSync(form.uploadDir + timestamp);
                 }
+
+                // 更改名字和路径
+                fs.rename(files.img.path, newPath, function (err) {
+                    if (err) {
+                        console.log("err", err);
+                        return res.json({
+                            status: 0,
+                            err: 401,
+                            info: "图片上传失败"
+                        });
+                    }
+                    return res.json({
+                        status: 1,
+                        info: "上传成功",
+                        data: {
+                            url:"/uploads/" + timestamp  + "/" + imageName,
+                            name: imageName
+                        }
+                    });
+                });
             });
 
-            // 更改名字和路径
-            fs.rename(files.img.path, newPath, function (err) {
-                if (err) {
-                    console.log("err", err);
-                    return res.json({
-                        status: 0,
-                        err: 401,
-                        info: "图片上传失败"
-                    });
-                }
-                return res.json({
-                    status: 1,
-                    info: "上传成功",
-                    data: {
-                        url:"/uploads/" + timestamp  + "/" + imageName,
-                        name: imageName
-                    }
-                });
-            })
+
         });
 
     })

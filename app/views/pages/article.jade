@@ -23,15 +23,15 @@ block content
                                 div.btn-group.col-sm-5(role="group")
                                     a.btn.btn-default(href="./article/edit")
                                         i.fa.fa-plus  新增
-                                    a.btn.btn-default
+                                    a.btn.btn-default(onclick="edit('./article/edit', '#formList', 0, 'skip')")
                                         i.fa.fa-file-text-o  编缉
                                     a.btn.btn-default
                                         i.fa.fa-search  查看
-                                    a.btn.btn-default
+                                    a.btn.btn-default(onclick="del('/article/del', '#formList')")
                                         i.fa.fa-trash   删除
                             div.box-body
                                 form#formList
-                                    table#tableList.table.table-bodered.table-striped
+                                    table#tableList.table.table-bordered.table-striped
                                         thead
                                             tr
                                                 th
@@ -45,12 +45,14 @@ block content
                                         each item in data
                                             tr
                                                 td.checkBox
-                                                    input.minimal(type="checkbox" value="" name="id")
+                                                    input.minimal(type="checkbox" value="#{item.id}" name="id")
                                                 td #{item.id}
-                                                td #{item.title}
-                                                td #{item.summary}
-                                                td #{item.img}
-                                                td #{item.add_time}
+                                                td 《#{item.title}》
+                                                td
+                                                    p(style="max-width: 450px;max-height: 60px; overflow:hidden;") #{item.summary}
+                                                td
+                                                    img(src="#{item.img}" style="max-width: 100px;max-height: 50px;")
+                                                td #{moment(item.add_time).format("YYYY-MM-DD hh:ss:mm")}
                                         </tbody>
                 script(type="text/javascript").
                     $(document).ready(function () {
@@ -108,7 +110,8 @@ block content
                     div.box
                         div.row
                             div.col-sm-6.article-content.clearfix
-                                input.article-title.font-24.form-control(placeholder="在这输入标题")
+                                input.article-title.font-24.form-control(value= data.title placeholder="在这输入标题")
+                                input(type="hidden" name="id" value= data.id)
                                 ul.article-menu.clearfix
                                     li.pull-left
                                         a(href="javascript:void(0);" onclick="showImageModal();").fa.fa-image
@@ -119,17 +122,21 @@ block content
                                     li.pull-left
                                         a(href="javascript:void(0);").fa.fa-clock-o
                                     li.pull-right
-                                        a(href="javascript:void(0);").fa.fa-mail-forward    发布文章
+                                        a(href="javascript:void(0);" onclick="publishAnArticle();").fa.fa-mail-forward    发布文章
                                     li.pull-right
                                         a(href="javascript:void(0);").fa.fa-save
                                     li.pull-right
                                         a(href="javascript:void(0);").fa.fa-columns
                                     li.pull-right
                                         a(href="javascript:void(0);").fa.fa-expand
-                                textarea#writeArticle.form-control
+                                textarea#writeArticle.form-control #{data.content}
                             div.col-sm-6
-                                h1.article-title 文章标题
-                                div#showArticle
+                                form#info.form-horizontal(name="info")
+                                    if data.title
+                                        h1.article-title #{data.title}
+                                    else
+                                        h1.article-title 新闻标题
+                                    div#showArticle !{data.contentHtml}
             script(type="text/javascript").
                 $(document).ready(function () {
                     var converter = new showdown.Converter(),
@@ -147,3 +154,21 @@ block content
                     });
 
                 });
+
+                //发布文章
+                function publishAnArticle() {
+                    console.log("发布文章");
+                    var data = {};
+                    var img = $("#showArticle").find("img")[0];
+                    data['content'] = $("#writeArticle").val();
+                    console.log(typeof(data['content']));
+                    data['title'] = $("h1.article-title").text();
+                    data['summary'] = $("#showArticle").text().substring(0, 98);
+                    data['img'] = $(img).attr("src");
+                    data['id'] = $("input[name='id']").val();
+
+                    $.post("/article/add", data, function (res) {
+                        console.log("保存文章", res);
+                        showModal(res.info);
+                    });
+                }
