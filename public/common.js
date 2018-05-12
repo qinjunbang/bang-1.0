@@ -96,36 +96,39 @@ function saveForm (url, formId, cb) {
 
 // 消息提示框
 function showModal(info, type, cb) {
-    var htmlText = [];
-    htmlText.push("<div class='modal fade' id='infoModal' style='z-index: 99999' role='dialog'>");
-    htmlText.push("<div class='modal-dialog' role='document'>");
-    htmlText.push("<div class='modal-content'>");
-    htmlText.push("<div class='modal-header'>");
-    htmlText.push("<button type='button' class='close' data-dismiss='modal' aria-label='Close'>");
-    htmlText.push("<span aria-hidden='true'>")
-    htmlText.push("&times;");
-    htmlText.push("</span>");
-    htmlText.push("</button>");
-    htmlText.push("<h4 class='modal-title'>");
-    htmlText.push("提示");
-    htmlText.push("</h4>");
-    htmlText.push("</div>");
-    htmlText.push("<div class='modal-body'>");
-    htmlText.push("<p>");
-    htmlText.push(info);
-    htmlText.push("</p>");
-    htmlText.push("</div>");
-    htmlText.push("<div class='modal-footer'>");
-    htmlText.push("<button type='button' class='btn btn-success' id='closeModal' data-dismiss='modal'>");
-    htmlText.push("确定");
-    htmlText.push("</button>");
-    htmlText.push("</div>");
-    htmlText.push("</div>");
-    htmlText.push("</div>");
-    htmlText.push("</div>");
-
-
-    $(window.parent.document).find("body").append(htmlText.join(''));
+    console.log($("#infoModal"));
+    if ($("#infoModal").length) {
+        $("#infoModal .modal-body p").text(info)
+    } else {
+        var htmlText = [];
+        htmlText.push("<div class='modal fade' id='infoModal' style='z-index: 99999' role='dialog'>");
+        htmlText.push("<div class='modal-dialog' role='document'>");
+        htmlText.push("<div class='modal-content'>");
+        htmlText.push("<div class='modal-header'>");
+        htmlText.push("<button type='button' class='close' data-dismiss='modal' aria-label='Close'>");
+        htmlText.push("<span aria-hidden='true'>")
+        htmlText.push("&times;");
+        htmlText.push("</span>");
+        htmlText.push("</button>");
+        htmlText.push("<h4 class='modal-title'>");
+        htmlText.push("提示");
+        htmlText.push("</h4>");
+        htmlText.push("</div>");
+        htmlText.push("<div class='modal-body'>");
+        htmlText.push("<p>");
+        htmlText.push(info);
+        htmlText.push("</p>");
+        htmlText.push("</div>");
+        htmlText.push("<div class='modal-footer'>");
+        htmlText.push("<button type='button' class='btn btn-success' id='closeModal' data-dismiss='modal'>");
+        htmlText.push("确定");
+        htmlText.push("</button>");
+        htmlText.push("</div>");
+        htmlText.push("</div>");
+        htmlText.push("</div>");
+        htmlText.push("</div>");
+        $(window.parent.document).find("body").append(htmlText.join(''));
+    }
 
     $(window.parent.document).find("#infoModal").modal("show");
     $(window.parent.document).find("#closeModal").click(function () {
