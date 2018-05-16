@@ -8,7 +8,7 @@ var User = mongoose.model('User');
 exports.index = function (req, res) {
     console.log("userInfo in session:", req.session.userInfo);
     if (!req.session.userInfo){
-        res.redirect("/login");
+        res.redirect("/admin/login");
     } else {
         res.render('adminIndex', {
             title: '首页'
