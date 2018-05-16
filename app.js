@@ -25,7 +25,7 @@ db.once('open', function () {
 // 也可以一个一个加载  例:
 // var BillModels = require('./app/models/bill');
 // var UserModels = require('./app/models/user');
-var models_path = __dirname + '/app/models';
+var models_path = __dirname + '/app/admin/models';
 var walk = function(path) {
     fs
         .readdirSync(path)
@@ -53,9 +53,10 @@ app.use(session({
     })
 }));
 
-app.set("views", "./app/views/pages"); //模板文件
+app.set("views", ["./app/www/views/pages", "./app/admin/views/pages"]); //模板文件
 app.set("view engine", "jade"); //模板引擎
-require('./config/routes')(app); // 引入路由文件
+require('./config/admin_routes')(app); // 引入admin路由文件
+require('./config/www_routes')(app); // 引入www路由文件
 app.listen(port);
 app.locals.moment = require('moment');
 app.use(express.static(path.join(__dirname, 'public')));//使用静态资源的根路径

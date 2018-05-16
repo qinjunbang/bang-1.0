@@ -1,10 +1,10 @@
 /**
  * Created by Lenovo on 2018/3/5.
  */
-var Index = require('../app/controllers/index');
-var Bill = require('../app/controllers/bill');
-var User = require('../app/controllers/user');
-var Article = require('../app/controllers/article');
+var Index = require('../app/admin/controllers/index');
+var Bill = require('../app/admin/controllers/bill');
+var User = require('../app/admin/controllers/user');
+var Article = require('../app/admin/controllers/article');
 var bodyParser = require('body-parser');
 var moment = require('moment');
 //引入图片上传模块
@@ -20,25 +20,25 @@ module.exports = function (app) {
         app.locals.userInfo = userInfo;
         next();
     });
-    app.get('/', Index.index);
-    app.get('/bill', Bill.index);
-    app.post('/bill/add', urlencodedParser, Bill.add);
-    app.get('/bill/edit/:id', Bill.index.edit);
-    app.get('/bill/edit', Bill.index.edit);
-    app.post('/bill/del', urlencodedParser, Bill.del);
-    app.all('/login', urlencodedParser, Index.login);
-    app.get('/logout', Index.logout);
-    app.all('/register', urlencodedParser, Index.register);
-    app.get('/user/index', User.user);
-    app.post('/user/del', urlencodedParser, User.del);
-    app.post('/user/add', urlencodedParser, User.add);
-    app.get('/user/edit/:id', User.edit);
-    app.get('/user/edit', User.edit);
-    app.get('/article', Article.index);
-    app.get('/article/edit', Article.index.edit);
-    app.get('/article/edit/:id', Article.index.edit);
-    app.post('/article/add', urlencodedParser, Article.index.add);
-    app.post('/article/del', urlencodedParser, Article.index.del);
+    app.get('/admin', Index.index);
+    app.get('/admin/bill', Bill.index);
+    app.post('/admin/bill/add', urlencodedParser, Bill.add);
+    app.get('/admin/bill/edit/:id', Bill.index.edit);
+    app.get('/admin/bill/edit', Bill.index.edit);
+    app.post('/admin/bill/del', urlencodedParser, Bill.del);
+    app.all('/admin/login', urlencodedParser, Index.login);
+    app.get('/admin/logout', Index.logout);
+    app.all('/admin/register', urlencodedParser, Index.register);
+    app.get('/admin/user/index', User.user);
+    app.post('/admin/user/del', urlencodedParser, User.del);
+    app.post('/admin/user/add', urlencodedParser, User.add);
+    app.get('/admin/user/edit/:id', User.edit);
+    app.get('/admin/user/edit', User.edit);
+    app.get('/admin/article', Article.index);
+    app.get('/admin/article/edit', Article.index.edit);
+    app.get('/admin/article/edit/:id', Article.index.edit);
+    app.post('/admin/article/add', urlencodedParser, Article.index.add);
+    app.post('/admin/article/del', urlencodedParser, Article.index.del);
 
     //上传图片
     app.post('/imagesUpload', function (req, res, next) {

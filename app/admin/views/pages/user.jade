@@ -23,13 +23,13 @@ block content
                         div.box
                             div.box-header.row
                                 div.btn-group.col-sm-5(role="group")
-                                    a.btn.btn-default(onclick="add('/user/edit', 320)")
+                                    a.btn.btn-default(onclick="add('/admin/user/edit', 320)")
                                         i.fa.fa-plus  新增
-                                    a.btn.btn-default(onclick="edit('/user/edit', '#formList', 320)")
+                                    a.btn.btn-default(onclick="edit('/admin/user/edit', '#formList', 320)")
                                         i.fa.fa-file-text-o  编辑
                                     a.btn.btn-default(onclick="edit()")
                                         i.fa.fa-search  查看
-                                    a.btn.btn-default(onclick="del('/user/del', '#formList')")
+                                    a.btn.btn-default(onclick="del('/admin/user/del', '#formList')")
                                         i.fa.fa-trash  删除
                             div.box-body
                                 form#formList
@@ -137,5 +137,5 @@ block content
                                         option(value="0") 超级管理员
                                         option(value="1") 管理员
                     div.box-footer
-                        button.btn.btn-default.pull-right(type="button" onclick="save('/user/add', '#info')") 提交
+                        button.btn.btn-default.pull-right(type="button" onclick="save('/admin/user/add', '#info')") 提交
 

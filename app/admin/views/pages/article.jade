@@ -21,13 +21,13 @@ block content
                         div.box
                             div.box-header.row
                                 div.btn-group.col-sm-5(role="group")
-                                    a.btn.btn-default(href="./article/edit")
+                                    a.btn.btn-default(href="/admin/article/edit")
                                         i.fa.fa-plus  新增
-                                    a.btn.btn-default(onclick="edit('./article/edit', '#formList', 0, 'skip')")
+                                    a.btn.btn-default(onclick="edit('/admin/article/edit', '#formList', 0, 'skip')")
                                         i.fa.fa-file-text-o  编缉
                                     a.btn.btn-default
                                         i.fa.fa-search  查看
-                                    a.btn.btn-default(onclick="del('/article/del', '#formList')")
+                                    a.btn.btn-default(onclick="del('/admin/article/del', '#formList')")
                                         i.fa.fa-trash   删除
                             div.box-body
                                 form#formList
@@ -167,7 +167,7 @@ block content
                     data['img'] = $(img).attr("src");
                     data['id'] = $("input[name='id']").val();
 
-                    $.post("/article/add", data, function (res) {
+                    $.post("/admin/article/add", data, function (res) {
                         console.log("保存文章", res);
                         showModal(res.info);
                     });

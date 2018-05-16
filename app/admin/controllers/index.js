@@ -10,7 +10,7 @@ exports.index = function (req, res) {
     if (!req.session.userInfo){
         res.redirect("/login");
     } else {
-        res.render('index', {
+        res.render('adminIndex', {
             title: '首页'
         });
     }

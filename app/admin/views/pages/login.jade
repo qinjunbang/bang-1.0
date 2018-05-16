@@ -40,10 +40,10 @@ html
                 showModal("密码不能为空！");
                 return;
             }
-           saveForm("/login", "#info", function (res) {
+           saveForm("/admin/login", "#info", function (res) {
                if (res.status === 1) {
                    showModal(res.info, 0, function () {
-                       window.location.href = '/';
+                       window.location.href = '/admin';
                    });
                } else {
                    showModal(res.info);
