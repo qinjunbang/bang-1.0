@@ -1,0 +1,43 @@
+
+
+
+
+.navbar-white {
+    background-color: #fff;
+    color: #333;
+    border: 0 none;
+    border-radius: 0;
+    border-bottom: 1px solid #ddd;
+    height: 60px;
+}
+.logo img {
+    margin-top: 10px;
+}
+.navbar-white .navbar-nav {
+    margin-top: 5px;
+    margin-left: 70px;
+}
+.navbar-white .navbar-nav>li {
+    margin: 0 20px;
+}
+.navbar-white .navbar-nav>li>a {
+    font-size: 14px;
+    font-weight: 700;
+    color: #59738a;
+}
+.navbar-white .navbar-btn {
+    margin-top: 10px;
+}
+.btn-green {
+    color: #fff;
+    background-color: #02bf9f;
+    border-color: #02bf9f;
+}
+.btn-green:hover {
+    color: #fff;
+    background-color: #038f77;
+    border-color: #038f77;
+}
+.login-btn {
+    margin-left: 20px;
+}
