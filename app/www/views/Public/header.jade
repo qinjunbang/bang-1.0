@@ -10,12 +10,20 @@ header.navbar.navbar-static-top.bs-docs-nav.navbar-white#top
                 li
                     a(href='/') 首页
                 li
-                    a(href='/') 自我介绍
+                    a(href='/about') 自我介绍
                 li
-                    a(href='/') 文章列表
+                    a(href='/articleList') 文章列表
                 li
-                    a(href='/') 作品展示
+                    a(href='/works') 作品展示
                 li
-                    a(href='/') 留言
-            a(href='/').btn.btn-green.navbar-btn.pull-right.login-btn 登录
-            a(href='/').btn.btn-green.navbar-btn.pull-right.register-btn 注册
+                    a(href='/message') 留言
+            a(href='/login').btn.btn-green.navbar-btn.pull-right.login-btn 登录
+            a(href='/register').btn.btn-green.navbar-btn.pull-right.register-btn 注册
+            div.user-head.pull-right.dropdown
+                a(href='javascript:;').head-avatar
+                    img(src="/images/www/head.jpg" alt="头像").img-responsive
+                ul.dropdown-menu
+                    li
+                        a(href="/") 个人中心
+                    li
+                        a(href="/") 退出

@@ -14,7 +14,6 @@
     margin-top: 10px;
 }
 .navbar-white .navbar-nav {
-    margin-top: 5px;
     margin-left: 70px;
 }
 .navbar-white .navbar-nav>li {
@@ -24,6 +23,7 @@
     font-size: 14px;
     font-weight: 700;
     color: #59738a;
+    padding: 20px 15px
 }
 .navbar-white .navbar-btn {
     margin-top: 10px;
@@ -40,4 +40,31 @@
 }
 .login-btn {
     margin-left: 20px;
+}
+.head-avatar {
+    display: block;
+    position: relative;
+    width: 40px;
+    height: 43px;
+    margin: 8px 28px 8px 20px;
+}
+.head-avatar:before {
+    content: "";
+    position: absolute;
+    top: 18px;
+    right: -14px;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid #999;
+}
+.head-avatar img {
+    border: 1px solid #ccc;
+    border-radius: 50%;
+}
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0; // remove the gap so it doesn't close
+}
+.user-head:hover {
+    background-color: #eee;
 }
