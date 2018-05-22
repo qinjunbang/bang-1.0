@@ -7,6 +7,9 @@ var ArticleList = require('../app/www/controllers/articleList');
 var Works = require('../app/www/controllers/works');
 var Message = require('../app/www/controllers/message');
 
+var bodyParser = require('body-parser');
+var urlencodedParser = bodyParser.urlencoded({extended: false});
+
 module.exports = function (app) {
     app.get('/', Index.index);
     app.get('/index', Index.index);
@@ -14,4 +17,5 @@ module.exports = function (app) {
     app.get('/articleList', ArticleList.index);
     app.get('/works', Works.index);
     app.get('/message', Message.index);
+    app.all('/login', urlencodedParser, Index.login);
 };

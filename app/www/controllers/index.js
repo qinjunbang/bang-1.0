@@ -21,7 +21,7 @@ exports.index = function (req, res) {
 
 exports.login = function (req, res) {
     var _user = req.body;
-
+    console.log("_user", _user);
     if (_user.user_name) {
         User.findOne({name: _user.user_name}, function (err, user) {
             if (err) {
@@ -49,7 +49,7 @@ exports.login = function (req, res) {
             });
         });
     } else {
-        res.render('login', {
+        res.render('adminLogin', {
             title: '登录页面'
         });
     }

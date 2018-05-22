@@ -10,7 +10,7 @@ exports.index = function (req, res) {
     if (!req.session.userInfo){
         res.redirect("/admin/login");
     } else {
-        res.render('adminIndex', {
+        res.render('index', {
             title: '首页'
         });
     }
@@ -46,7 +46,7 @@ exports.login = function (req, res) {
             });
         });
     } else {
-        res.render('login', {
+        res.render('adminLogin', {
             title: '登录页面'
         });
     }
