@@ -71,7 +71,7 @@
 
 section.login .main {
     width: 400px;
-    margin: 0 auto;
+    margin: 6% auto;
     box-shadow: 0 0 8px rgba(0,0,0,.1);
     border-radius: 8px;
 }
@@ -99,7 +99,11 @@ section.login .main .login-content .form-group input {
 }
 section.login .main .remember {
     width: 300px;
-    margin: 0 auto;
+    margin: 20px auto;
+    color: #969696;
+}
+section.login .main .remember .remember-btn label {
+    margin-left: 5px;
 }
 section.login .main .login-btn {
     display: block;
@@ -112,4 +116,59 @@ section.login .main .login-btn {
     font-size: 18px;
     text-align: center;
     border-radius: 20px;
+}
+
+section.login .main h4.title a {
+    display: inline-block;
+    padding: 10px;
+    color: #506a77;
+    margin: 50px 0;
+}
+section.login .main h4.title a.active {
+    color: #02bf9f;
+    border-bottom: 2px solid;
+}
+section.login .main .main-footer .more-sign {
+    margin: 25px auto;
+    width: 300px;
+}
+section.login .main .main-footer .more-sign h6 {
+    position: relative;
+    margin: 0 0 10px;
+    font-size: 12px;
+    color: #969696;
+}
+section.login .main .main-footer .more-sign h6:before,
+section.login .main .main-footer .more-sign h6:after {
+    content: "";
+    border-top: 1px solid #b5b5b5;
+    display: block;
+    position: absolute;
+    width: 60px;
+    top: 5px;
+}
+section.login .main .main-footer .more-sign h6:before {
+    left: 30px;
+}
+section.login .main .main-footer .more-sign h6:after {
+    right: 30px;
+}
+section.login .main .main-footer .more-sign ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    width: 300px;
+    padding-left: 0;
+}
+section.login .main .main-footer .more-sign ul li a {
+    display: inline-block;
+    width: 40px;
+    height: 35px;
+    margin: 10px 15px 30px;
+}
+section.login .main .main-footer .more-sign ul li a.wechat {
+    background: url(../images/www/wechat.jpg)no-repeat;
+}
+section.login .main .main-footer .more-sign ul li a.qq {
+    background: url(../images/www/qq.jpg)no-repeat;
 }

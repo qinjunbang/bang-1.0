@@ -7,9 +7,10 @@ block content
     section.login
         div.main
             div.main-header
-                h4.title 登录
+                h4.title.text-center
+                    a(href="#").active 登录
                     b ·
-                    |  注册
+                    a(href="#") 注册
             div.main-body
                 form#info
                     div.login-content
@@ -29,6 +30,11 @@ block content
                     button(type="button").btn.login-btn 登录
             div.main-footer
                 div.more-sign
-                    h6 其它登录方式
+                    h6.text-center 其它登录方式
+                    ul
+                        li
+                            a(href="").wechat
+                        li
+                            a(href="").qq
 
 
