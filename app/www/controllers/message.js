@@ -3,7 +3,7 @@
  */
 
 exports.index = function (req, res) {
-  res.render("message", {
+  res.render("./www/pages/message", {
       title: "留言板"
   })
 };

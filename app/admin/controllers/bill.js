@@ -12,7 +12,7 @@ exports.index = function (req, res) {
             console.log(err);
         }
         console.log("data", data);
-        res.render('bill', {
+        res.render('./admin/pages/bill', {
             action: 'index',
             title: '账单管理页面',
             data: data
@@ -29,7 +29,7 @@ exports.index.edit = function (req, res) {
             if (err) {
                 console.log(err);
             } else {
-                res.render('bill', {
+                res.render('./admin/pages/bill', {
                     action: 'edit',
                     title: '编辑页面',
                     data: data
@@ -37,7 +37,7 @@ exports.index.edit = function (req, res) {
             }
         });
     } else {
-       res.render('bill', {
+       res.render('./admin/pages/bill', {
            action: 'edit',
            title: '新增页面',
            data: {id: '', money: '', scene: '', pay_way: ''}

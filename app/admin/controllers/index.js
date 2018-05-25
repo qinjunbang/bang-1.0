@@ -8,9 +8,9 @@ var User = mongoose.model('User');
 exports.index = function (req, res) {
     console.log("userInfo in session:", req.session.userInfo);
     if (!req.session.userInfo){
-        res.redirect("/admin/login");
+        res.redirect("./admin/login");
     } else {
-        res.render('index', {
+        res.render('./admin/pages/index', {
             title: '首页'
         });
     }
@@ -46,7 +46,7 @@ exports.login = function (req, res) {
             });
         });
     } else {
-        res.render('adminLogin', {
+        res.render('./admin/pages/login', {
             title: '登录页面'
         });
     }
@@ -54,7 +54,7 @@ exports.login = function (req, res) {
 
 exports.logout = function (req, res) {
     delete req.session.userInfo;
-    res.redirect("/login");
+    res.redirect(".admin/pages/login");
 };
 
 exports.register = function (req, res) {
@@ -80,7 +80,7 @@ exports.register = function (req, res) {
             }
         });
     } else {
-        res.render('register', {
+        res.render('./admin/pages/register', {
             title: "注册页面"
         })
     }

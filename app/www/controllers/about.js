@@ -5,7 +5,7 @@
 
 exports.index = function (req, res) {
 
-    res.render("about", {
+    res.render("./www/pages/about", {
         title: "自我介绍"
     });
 };

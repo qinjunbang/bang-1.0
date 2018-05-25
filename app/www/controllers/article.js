@@ -3,7 +3,7 @@
  */
 
 exports.index = function (req, res) {
-    res.render('articleList', {
+    res.render('./www/pages/article', {
         title: "文章列表"
     });
 };

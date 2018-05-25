@@ -14,7 +14,7 @@ exports.index = function (req, res) {
     //         title: '首页'
     //     });
     // }
-    res.render('index', {
+    res.render('./www/pages/index', {
         title: '首页'
     });
 };
@@ -49,7 +49,7 @@ exports.login = function (req, res) {
             });
         });
     } else {
-        res.render('adminLogin', {
+        res.render('./www/pages/login', {
             title: '登录页面'
         });
     }
@@ -57,7 +57,7 @@ exports.login = function (req, res) {
 
 exports.logout = function (req, res) {
     delete req.session.userInfo;
-    res.redirect("/login");
+    res.redirect("./wwww/pages/login");
 };
 
 exports.register = function (req, res) {
@@ -83,7 +83,7 @@ exports.register = function (req, res) {
             }
         });
     } else {
-        res.render('register', {
+        res.render('./www/pages/register', {
             title: "注册页面"
         })
     }

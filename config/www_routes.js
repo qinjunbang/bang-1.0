@@ -3,7 +3,7 @@
  */
 var Index = require('../app/www/controllers/index');
 var About = require('../app/www/controllers/about');
-var ArticleList = require('../app/www/controllers/articleList');
+var ArticleList = require('../app/www/controllers/article');
 var Works = require('../app/www/controllers/works');
 var Message = require('../app/www/controllers/message');
 

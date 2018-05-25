@@ -11,7 +11,7 @@ exports.user = function (req, res) {
             console.log(err);
         } else {
             console.log("data", data);
-            res.render('user', {
+            res.render('./admin/pages/user', {
                 action: 'index',
                 title: '管理员列表',
                 data: data
@@ -27,7 +27,7 @@ exports.edit = function (req, res) {
             if (err) {
                 console.log(err);
             } else {
-                res.render('user', {
+                res.render('./admin/pages/user', {
                     action: 'edit',
                     title: '编辑用户',
                     data: user
@@ -35,7 +35,7 @@ exports.edit = function (req, res) {
             }
         });
     } else {
-        res.render('user', {
+        res.render('./admin/pages/user', {
             action: 'edit',
             title: '新增用户',
             data: {id: '', name: '', password: '', retype_password: '', status: 0, role: 1}

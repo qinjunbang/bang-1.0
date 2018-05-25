@@ -53,7 +53,7 @@ app.use(session({
     })
 }));
 
-app.set("views", ["./app/www/views/pages", "./app/admin/views/pages"]); //模板文件
+app.set("views", "./views"); //模板文件
 app.set("view engine", "jade"); //模板引擎
 require('./config/admin_routes')(app); // 引入admin路由文件
 require('./config/www_routes')(app); // 引入www路由文件

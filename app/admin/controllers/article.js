@@ -15,7 +15,7 @@ exports.index = function (req, res) {
             console.log("err:", err);
         }
         console.log(data);
-        res.render('article', {
+        res.render('./admin/pages/article', {
             action: 'index',
             title: '文章列表',
             data: data

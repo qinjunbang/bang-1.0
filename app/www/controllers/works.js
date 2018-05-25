@@ -3,7 +3,7 @@
  */
 
 exports.index = function (req, res) {
-    res.render("works", {
+    res.render("./www/pages/works", {
         title: "作品展示"
     });
 };
