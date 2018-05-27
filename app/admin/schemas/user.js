@@ -54,7 +54,6 @@ UserSchema.pre('save', function (next) {
             });
         });
     }
-    next();
 });
 UserSchema.methods = {
     comparePassword: function (_password, cb) {

@@ -17,13 +17,17 @@ header.navbar.navbar-static-top.bs-docs-nav.navbar-white#top
                     a(href='/works') 作品展示
                 li
                     a(href='/message') 留言
-            a(href='/login').btn.btn-green.navbar-btn.pull-right.login-btn 登录
-            a(href='/register').btn.btn-green.navbar-btn.pull-right.register-btn 注册
-            div.user-head.pull-right.dropdown
-                a(href='javascript:;').head-avatar
-                    img(src="/images/www/head.jpg" alt="头像").img-responsive
-                ul.dropdown-menu
-                    li
-                        a(href="/") 个人中心
-                    li
-                        a(href="/") 退出
+            if !memberInfo
+                a(href='/login').btn.btn-green.navbar-btn.pull-right.login-btn 登录
+                a(href='/register').btn.btn-green.navbar-btn.pull-right.register-btn 注册
+            else
+                div.user-head.pull-right.dropdown
+                    a(href='javascript:;').head-avatar.pull-left
+                        img(src="/images/www/head.jpg" alt="头像").img-responsive.pull-left
+                    span.user-name.pull-left    #{memberInfo.name}
+                    span.triangle.pull-left
+                    ul.dropdown-menu
+                        li
+                            a(href="/") 个人中心
+                        li
+                            a(href="/logout") 退出

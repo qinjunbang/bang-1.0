@@ -5,6 +5,8 @@ var Index = require('../app/admin/controllers/index');
 var Bill = require('../app/admin/controllers/bill');
 var User = require('../app/admin/controllers/user');
 var Article = require('../app/admin/controllers/article');
+var Member = require('../app/admin/controllers/Member');
+
 var bodyParser = require('body-parser');
 var moment = require('moment');
 //引入图片上传模块
@@ -17,7 +19,9 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false }); // create app
 module.exports = function (app) {
     app.use(function (req, res, next) {
         var userInfo = req.session.userInfo;
+        var memberInfo = req.session.memberInfo;
         app.locals.userInfo = userInfo;
+        app.locals.memberInfo = memberInfo;
         next();
     });
     app.get('/admin', Index.index);
@@ -39,6 +43,12 @@ module.exports = function (app) {
     app.get('/admin/article/edit/:id', Article.index.edit);
     app.post('/admin/article/add', urlencodedParser, Article.index.add);
     app.post('/admin/article/del', urlencodedParser, Article.index.del);
+    app.get('/admin/member/index', Member.index);
+    app.post('/admin/member/del', urlencodedParser, Member.del);
+    app.post('/admin/member/add', urlencodedParser, Member.add);
+    app.get('/admin/member/edit/:id', Member.edit);
+    app.get('/admin/member/edit', Member.edit);
+
 
     //上传图片
     app.post('/imagesUpload', function (req, res, next) {

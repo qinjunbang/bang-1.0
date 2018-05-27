@@ -18,4 +18,6 @@ module.exports = function (app) {
     app.get('/works', Works.index);
     app.get('/message', Message.index);
     app.all('/login', urlencodedParser, Index.login);
+    app.all('/register', urlencodedParser, Index.register);
+    app.get('/logout', Index.logout);
 };

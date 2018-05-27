@@ -1,25 +1,19 @@
 /**
- * Created by Lenovo on 2018/3/8.
+ * Created by Lenovo on 2018/5/27.
  */
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt');
 
-
-var UserSchema = new Schema({
+var MemberSchema = new Schema({
     name: {
-        unique: true,
         type: String
-    }, //金额
+    },
     password: String,
-    role: {
-        type: Number,  // 0 -> 超级管理员  1 -> 管理员
-        default: 1
-    },
-    status:{
-        type: Number, // 0 -> 等待审核  1 -> 正常  2 -> 审核失败
-        default: 0
-    },
+    img: {
+        type: String, //头像
+        default: ""
+    } ,
     updateAt: {
         type: Date,
         default: Date.now()
@@ -30,33 +24,34 @@ var UserSchema = new Schema({
     }
 });
 
-UserSchema.pre('save', function (next) {
-    var user = this;
+MemberSchema.pre('save', function (next) {
+    var member = this;
 
-    if (this.isNew){
-        this.updateAt = this.add_time = Date.now();
+    if (this.isNew) {
+        this.add_time = this.updateAt = Date.now();
     } else {
         this.updateAt = Date.now();
     }
-    if (user.password.length < 16) {
+    if (member.password.length < 16) {
         bcrypt.genSalt(10, function (err, salt) {
             if (err) {
                 return next(err);
             }
 
-            bcrypt.hash(user.password, salt, function (err, hashPwd) {
+            bcrypt.hash(member.password, salt, function (err, hashPwd) {
                 if (err) {
                     return next(err);
                 }
 
-                user.password = hashPwd;
+                member.password = hashPwd;
                 next();
             });
         });
     }
-    next();
+
 });
-UserSchema.methods = {
+
+MemberSchema.methods = {
     comparePassword: function (_password, cb) {
         bcrypt.compare(_password, this.password, function(err, isMatch) {
             if (err) {
@@ -67,7 +62,7 @@ UserSchema.methods = {
         });
     }
 };
-UserSchema.statics = {
+MemberSchema.statics = {
     select: function (id, cb) {
         if (id && id !== '') {
             return this.findOne({_id: id}).exec(cb);
@@ -77,4 +72,4 @@ UserSchema.statics = {
     }
 };
 
-module.exports = UserSchema;
+module.exports = MemberSchema;

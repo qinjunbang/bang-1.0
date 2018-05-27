@@ -1,5 +1,5 @@
 //
-   Created by junbangqin on 2018/5/21.
+   Created by Lenovo on 2018/5/27.
 extends ../layout
 
 block content
@@ -8,38 +8,34 @@ block content
         div.main
             div.main-header
                 h4.title.text-center
-                    a(href="/login").active 登录
+                    a(href="/login") 登录
                     b ·
-                    a(href="/register") 注册
+                    a(href="/register").active 注册
             div.main-body
                 form#info
                     div.login-content
+                        input(type="hidden" name="img")
                         div.form-group
                             i.glyphicon.glyphicon-user
-                            input(type="text" name="name" id="#user_nam" placeholder="手机号或邮箱").form-control
+                            input(type="text" name="name" id="userName" placeholder="手机号或邮箱").form-control
                         div.form-group
                             i.glyphicon.glyphicon-user
                             input(type="password" name="password" id="password" placeholder="密码").form-control
-                    div.remember
-                        div.pull-left.remember-btn
-                            input(type="checkbox")
-                            label   记住我
-                        div.pull-right.forget-password
-                            a(href='') 忘记密码?
-                        div.clearfix
-                    button(type="button" onclick="login()").btn.login-btn 登录
+                        div.form-group
+                            i.glyphicon.glyphicon-user
+                            input(type="password" name="retype_password" id="retype_password" placeholder="确认密码").form-control
+                    button(type="button" onclick="register()").btn.login-btn 注册
             div.main-footer
                 div.more-sign
-                    h6.text-center 其它登录方式
+                    h6.text-center 其它注册方式
                     ul
                         li
                             a(href="").wechat
                         li
                             a(href="").qq
     script(type="text/javascript").
-        function login() {
-
-            if ($("#user_name").val() === '') {
+        function register() {
+            if ($("#userName").val() === '') {
                 showModal("用户名不能为空！");
                 return;
             }
@@ -47,25 +43,18 @@ block content
                 showModal("密码不能为空！");
                 return;
             }
-            saveForm("/login", "#info", function (res) {
+            if ($("#password").val() !== $("#retype_password").val()) {
+                showModal("两次输入的密码不一致！");
+                return;
+            }
+            saveForm("/register", "#info", function (res) {
+                console.log(res);
                 if (res.status === 1) {
-                    showModal(res.info, 0, function () {
-                        location.href = '/index';
+                    showModal(res.info, 0, function (){
+                        location.href = "/login";
                     });
                 } else {
                     showModal(res.info);
                 }
             });
         }
-
-        $("input").keyup(function (event) {
-            if (event.keyCode === 13) {
-                if ($("#infoModal").hasClass("in")) {
-                    $("#closeModal").click();
-                } else {
-                    login();
-                }
-            }
-        });
-
-

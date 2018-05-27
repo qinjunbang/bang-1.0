@@ -2,7 +2,7 @@
  * Created by Lenovo on 2018/3/5.
  */
 var mongoose = require('mongoose');
-var User = mongoose.model('User');
+var Member = mongoose.model('Member');
 
 
 exports.index = function (req, res) {
@@ -20,28 +20,23 @@ exports.index = function (req, res) {
 };
 
 exports.login = function (req, res) {
-    var _user = req.body;
-    console.log("_user", _user);
-    if (_user.user_name) {
-        User.findOne({name: _user.user_name}, function (err, user) {
+    var _member = req.body;
+    console.log("_member", _member);
+    if (_member.name) {
+        Member.findOne({name: _member.name}, function (err, member) {
             if (err) {
                 res.json({info: "报错了！", status: 0, data: err});
             }
-            if (!user) {
+            if (!member) {
                 res.json({info: "用户名或密码错误!", status: 0, data: []});
             }
-            if (user.status === 0) {
-                res.json({info: "等待超级管理员审核！", status: 0, data: []});
-            }
-            if (user.status === 2) {
-                res.json({info: "审核失败！", status: 0, data: []});
-            }
-            user.comparePassword(_user.password, function (err, isMatch) {
+
+            member.comparePassword(_member.password, function (err, isMatch) {
                 if (err) {
                     res.json({info: "报错了！", status: 0, data: err})
                 }
                 if (isMatch) {
-                    req.session.userInfo = user;
+                    req.session.memberInfo = member;
                     res.json({info: "登录成功！", status: 1, data: []});
                 } else {
                     res.json({info: "用户名或密码错误！", status: 0, data: []});
@@ -56,28 +51,28 @@ exports.login = function (req, res) {
 };
 
 exports.logout = function (req, res) {
-    delete req.session.userInfo;
-    res.redirect("./wwww/pages/login");
+    delete req.session.memberInfo;
+    res.redirect("/login");
 };
 
 exports.register = function (req, res) {
-    var _user = req.body;
-    if (_user.name) {
-        User.findOne({name: _user.name}, function (err, user) {
+    var _member = req.body;
+    if (_member.name) {
+        Member.findOne({name: _member.name}, function (err, member) {
             if (err) {
                 console.log(err);
             }
 
-            if (user) {
+            if (member) {
                 res.json({info: "用户名已经存在", status: 0, data: []});
             } else {
-                user = new User(_user);
-                user.save(function (err, user) {
+                member = new Member(_member);
+                member.save(function (err, member) {
                     if (err) {
                         console.log(err);
-                        res.json({info: err.errmsg, status: 0, data: []});
+                        res.json({info: err.errmsg, status: 0, data: [member]});
                     } else {
-                        res.json({info: "注册成功！", status: 1, data: []});
+                        res.json({info: "注册成功！", status: 1, data: [member]});
                     }
                 });
             }

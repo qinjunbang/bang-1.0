@@ -26,6 +26,7 @@ db.once('open', function () {
 // var BillModels = require('./app/models/bill');
 // var UserModels = require('./app/models/user');
 var models_path = __dirname + '/app/admin/models';
+var models_www_path = __dirname + '/app/www/models';
 var walk = function(path) {
     fs
         .readdirSync(path)
@@ -44,9 +45,10 @@ var walk = function(path) {
         })
 };
 walk(models_path);
+walk(models_www_path);
 
 // 使用 connect-mongo 模块，保存会话
-app.use(session({
+    app.use(session({
     secret: 'bang',
     store: new MongoStore({
         mongooseConnection: db

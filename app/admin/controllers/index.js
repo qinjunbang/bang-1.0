@@ -54,7 +54,7 @@ exports.login = function (req, res) {
 
 exports.logout = function (req, res) {
     delete req.session.userInfo;
-    res.redirect(".admin/pages/login");
+    res.redirect("/admin/login");
 };
 
 exports.register = function (req, res) {
