@@ -21,33 +21,35 @@ exports.index = function (req, res) {
 
 exports.login = function (req, res) {
     var _member = req.body;
-    console.log("_member", _member);
-    if (_member.name) {
+
+    if (_member && _member.name) {
         Member.findOne({name: _member.name}, function (err, member) {
             if (err) {
                 res.json({info: "报错了！", status: 0, data: err});
             }
-            if (!member) {
+            if (!member || typeof member == null) {
                 res.json({info: "用户名或密码错误!", status: 0, data: []});
+            } else {
+                member.comparePassword(_member.password, function (err, isMatch) {
+                    if (err) {
+                        res.json({info: "报错了！", status: 0, data: err})
+                    }
+                    if (isMatch) {
+                        req.session.memberInfo = member;
+                        res.json({info: "登录成功！", status: 1, data: []});
+                    } else {
+                        res.json({info: "用户名或密码错误！", status: 0, data: []});
+                    }
+                });
             }
-
-            member.comparePassword(_member.password, function (err, isMatch) {
-                if (err) {
-                    res.json({info: "报错了！", status: 0, data: err})
-                }
-                if (isMatch) {
-                    req.session.memberInfo = member;
-                    res.json({info: "登录成功！", status: 1, data: []});
-                } else {
-                    res.json({info: "用户名或密码错误！", status: 0, data: []});
-                }
-            });
         });
     } else {
+        console.log("进来了");
         res.render('./www/pages/login', {
             title: '登录页面'
         });
     }
+
 };
 
 exports.logout = function (req, res) {
