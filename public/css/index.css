@@ -9,6 +9,7 @@
     border-radius: 0;
     border-bottom: 1px solid #ddd;
     height: 60px;
+    margin: 0;
 }
 .logo img {
     margin-top: 10px;
@@ -178,4 +179,88 @@ section.login .main .main-footer .more-sign ul li a.wechat {
 }
 section.login .main .main-footer .more-sign ul li a.qq {
     background: url(../images/www/qq.jpg)no-repeat;
+}
+section.banner {
+    max-height: 600px;
+}
+.message-content {
+    width: 924px;
+    margin: 0 auto;
+    padding: 24px;
+}
+.message-content .message-title {
+    font-size: 18px;
+    color: #333;
+}
+section.message-info {
+
+}
+section.message-info .message-content .btn-published {
+    margin-top: 10px;
+    font-size: 18px;
+    padding: 3px 30px;
+}
+ul.message-list, ol.reply-list {
+    list-style: none;
+    padding: 0;
+}
+ol.reply-list {
+    margin-top: 15px;
+}
+ul.message-list li {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    overflow: hidden;
+    padding: 20px 0;
+    margin-top: -1px;
+}
+/*.message-left,.message-body {*/
+    /*display: table-cell;*/
+/*}*/
+.message-body,.reply-body {
+    padding-left: 10px;
+    width: 92%;
+}
+h4.message-header {
+    color: #506a77;
+}
+h4.message-header span {
+    font-size: 14px;
+    color: #999;
+    margin-left: 20px;
+}
+.message-body .content-text {
+    min-height: 90px;
+    padding-top: 6px;
+}
+.message-body .reply {
+    font-size: 12px;
+    line-height: 12px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 15px;
+}
+.message-time {
+    font-size: 12px;
+    color: #ccc;
+}
+.message-body .reply a {
+    color: #506a77;
+    margin-left: 30px;
+}
+ul.message-list li .reply-list li {
+    border: none;
+    padding: 10px 0;
+}
+.reply-list .reply-body reply-content {
+    line-height: 16px;
+}
+
+.reply-list .reply-body .reply-content span {
+    font-size: 16px;
+    color: #506a77;
+    margin-right: 15px;
+}
+.btn-more {
+    border-radius: 20px;
+    padding: 6px 21px;
 }
