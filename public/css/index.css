@@ -236,8 +236,6 @@ h4.message-header span {
 .message-body .reply {
     font-size: 12px;
     line-height: 12px;
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 15px;
 }
 .message-time {
     font-size: 12px;
@@ -246,6 +244,11 @@ h4.message-header span {
 .message-body .reply a {
     color: #506a77;
     margin-left: 30px;
+}
+.message-body .reply div.line {
+    border-top: 1px solid #ccc;
+    margin-top: 15px;
+
 }
 ul.message-list li .reply-list li {
     border: none;
@@ -263,4 +266,10 @@ ul.message-list li .reply-list li {
 .btn-more {
     border-radius: 20px;
     padding: 6px 21px;
+}
+.reply-textarea {
+    display: none;
+}
+.reply-textarea a.btn {
+    margin: 5px 5px 5px 0;
 }

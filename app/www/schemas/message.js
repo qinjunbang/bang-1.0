@@ -13,10 +13,18 @@ var MessageSchema = new Schema({
         type: ObjectId,
         ref: 'Member'
     },
-    to: {
-        type: ObjectId,
-        ref: 'Member'
-    },
+    reply: [{
+        from: {
+            type: ObjectId,
+            ref: 'Member'
+        },
+        to: {
+            type: ObjectId,
+            ref: 'Member'
+        },
+        content: String
+    }],
+
     content: String,
     updateAt: {
         type: Date,

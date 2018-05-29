@@ -6,7 +6,7 @@ var Message = mongoose.model('Message');
 var _ = require('underscore');
 
 exports.index = function (req, res) {
-    Message.find({}).populate('from','').sort({"add_time": -1}).exec(function (err, data) {
+    Message.find({}).populate('from','name').populate('reply.from reply.to', 'name').sort({"add_time": -1}).exec(function (err, data) {
         if (err) {
             console.log(err);
         } else {
@@ -23,15 +23,41 @@ exports.index = function (req, res) {
 //留言
 exports.add = function (req, res) {
     var data = req.body;
-
     var message = new Message(data);
 
-    message.save(function (err, message) {
-        if (err) {
-            console.log("err:", err);
-            res.json({status: 0, info:"留言失败！", data: [err]});
+    if (!data.from || data.from === '') {
+        res.json({status: 0, info: "你还没有登录~！", data: []});
+    } else {
+
+        if (data.mid) {
+            Message.findById(data.mid, function (err, message) {
+                var reply = {
+                    from: data.from,
+                    to: data.uid,
+                    content: data.content
+                };
+
+                message.reply.push(reply);
+
+                message.save(function (err, message) {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        res.json({status: 1, info: "回复成功~", data: []});
+                    }
+                });
+            });
         } else {
-            res.json({status: 1, info: "留言成功！", data: [message]});
+            message.save(function (err, message) {
+                if (err) {
+                    console.log("err:", err);
+                    res.json({status: 0, info:"留言失败！", data: [err]});
+                } else {
+                    res.json({status: 1, info: "留言成功！", data: [message]});
+                }
+            });
         }
-    });
+
+    }
+
 };

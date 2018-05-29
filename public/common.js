@@ -9,7 +9,7 @@ function save (url, formId) {
         if (res.status === 1) {
             showModal(res.info, 1);
         } else {
-            showModal(res.info);
+            showModal(res.info,0);
         }
     });
 }
@@ -135,6 +135,9 @@ function showModal(info, type, cb) {
         $(window.parent.document).find("#infoModal,.modal-backdrop").remove();
         $(".modal-backdrop").remove();
         $("body").removeClass("modal-open");
+        $("body").css({
+            padding: 0
+        });
         typeof cb === 'function' &&  cb();
         if(type != 1){
             $(window.parent.document).find("#infoModal").modal("hide");

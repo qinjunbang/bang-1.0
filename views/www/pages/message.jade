@@ -9,7 +9,8 @@ block content
     section.message-info
         div.message-content
             form#info
-                input(type="hidden" name="from" value="#{memberInfo._id}")
+                if memberInfo
+                    input(type="hidden" name="from" value="#{memberInfo._id}")
                 textarea.form-control(rows="15", name="content")
                 button(type="button" onclick="save('/message/add', '#info')").btn.btn-green.btn-published 发表
     section.message-box
@@ -27,27 +28,58 @@ block content
                             p.content-text  #{item.content}
                             div.reply
                                 span.message-time 2018-04-15 21:55:03
-                                a(href="") 回复
+                                a(href="javascript:void(0);").reply-btn 回复
+                                if item.reply && item.reply.length > 0
+                                    div.line
                             ol.reply-list
-                                li.reply-item
-                                    div.reply-left.pull-left
-                                        a(href="#")
-                                            img.img-circle(data-src="holder.js/64x64" alt="64x64" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PCEtLQpTb3VyY2UgVVJMOiBob2xkZXIuanMvNjR4NjQKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNjNhNjZhMWIyNyB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE2M2E2NmExYjI3Ij48cmVjdCB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSIxMy4xNzk2ODc1IiB5PSIzNi41Ij42NHg2NDwvdGV4dD48L2c+PC9nPjwvc3ZnPg==" data-holder-rendered="true" style="width: 48px; height: 48px;")
-                                    div.reply-body.pull-left
-                                        p.reply-content
-                                            span 我
-                                            | 晚上好
-                                        p.message-time 2018-04-15 21:55:03
-                                li.reply-item
-                                    div.reply-left.pull-left
-                                        a(href="#")
-                                            img.img-circle(data-src="holder.js/64x64" alt="64x64" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PCEtLQpTb3VyY2UgVVJMOiBob2xkZXIuanMvNjR4NjQKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNjNhNjZhMWIyNyB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE2M2E2NmExYjI3Ij48cmVjdCB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSIxMy4xNzk2ODc1IiB5PSIzNi41Ij42NHg2NDwvdGV4dD48L2c+PC9nPjwvc3ZnPg==" data-holder-rendered="true" style="width: 48px; height: 48px;")
-                                    div.reply-body.pull-left
-                                        p.reply-content
-                                            span 我
-                                            | 晚上好
-                                        p.message-time 2018-04-15 21:55:03
+                                if item.reply
+                                    each vo in item.reply
+                                        li.reply-item
+                                            div.reply-left.pull-left
+                                                a(href="#")
+                                                    img.img-circle(data-src="holder.js/64x64" alt="64x64" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PCEtLQpTb3VyY2UgVVJMOiBob2xkZXIuanMvNjR4NjQKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNjNhNjZhMWIyNyB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE2M2E2NmExYjI3Ij48cmVjdCB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSIxMy4xNzk2ODc1IiB5PSIzNi41Ij42NHg2NDwvdGV4dD48L2c+PC9nPjwvc3ZnPg==" data-holder-rendered="true" style="width: 48px; height: 48px;")
+                                            div.reply-body.pull-left
+                                                p.reply-content
+                                                    span #{vo.from.name}
+                                                    | #{vo.content}
+                                                p.message-time 2018-04-15 21:55:03
+                            div.reply-textarea.col-sm-6
+                                textarea.form-control(class="textarea-#{item._id}")
+                                a(href="javascript:void(0);" data-mid="#{item._id}" data-uid="#{item.from._id}").btn.btn-green.btn-xs.doReply-btn 确定
+                                a(href="javascript:void(0);").btn.btn-default.btn-xs 取消
 
         div.message-footer
             div.message-content.text-center
                 button(type="button").btn.btn-green.btn-more 加载更多
+    script.
+        //点击回复
+        $(".reply-btn").click(function () {
+            console.log("6666",$(this).parents(".message-body"));
+            $(this).parents("li").siblings().find(".message-body .reply-textarea").hide();
+            $(this).parents(".message-body").find(".reply-textarea").show();
+        });
+
+        //点击确认回复
+        $(".doReply-btn").click(function () {
+            var mid = $(this).attr("data-mid"),
+                uid = $(this).attr("data-uid"),
+                content = $(".textarea-" + mid).val(),
+                from = "#{memberInfo._id}";
+
+            if (content === '') {
+                return showModal("内容不能为空", 0);
+            } else if (from === '') {
+                return showModal("请你先登录", 0);
+            }
+            console.log("mid", mid);
+            console.log("uid", uid);
+            console.log("content", content);
+            $.post("/message/add", {
+                mid: mid,
+                uid: uid,
+                content: content,
+                from: from
+            }, function (res) {
+                console.log("res", res);
+            });
+        });
