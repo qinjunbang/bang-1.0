@@ -4,3 +4,79 @@ extends ../layout
 
 block content
     include ../Public/header
+    section.banner
+        div#carousel.carousel.slide(data-ride="carousel")
+            ol.carousel-indicators
+                li.active(data-target="#carousel" data-slide-to="0")
+                li(data-target="#carousel" data-slide-to="1")
+                li(data-target="#carousel" data-slide-to="2")
+            div.carousel-inner(role="listbox")
+                div.item.active
+                    img(src="/images/www/banner1.jpg" alt="...")
+                div.item
+                    img(src="/images/www/banner1.jpg" alt="...")
+                div.item
+                    img(src="/images/www/banner1.jpg" alt="...")
+            a.left.carousel-control(href="#carousel" role="button" data-slide="prev")
+                span.glyphicon.glyphicon-chevron-left(aria-hidden="true")
+                span.sr-only  Previous
+            a.right.carousel-control(href="#carousel" role="button" data-slide="next")
+                span.glyphicon.glyphicon-chevron-right(aria-hidden="true")
+                span.sr-only Next
+
+    section.article-list
+        div.container
+            div.title.text-center
+                h2  最新·文章·列表
+                p.sub-title Article List
+            div.row.article-content
+                div.col-sm-4
+                    div.article-title
+                        h3.f24.color-default
+                            span.glyphicon.glyphicon-heart-empty.green.f48.mr10
+                            | 学习笔记
+                    ul.list-unstyled
+                        li
+                            a(href="#").f14.color-default 我的第一个学习笔记
+                        li
+                            a(href="#").f14.color-default 我的第一个学习笔记
+                        li
+                            a(href="#").f14.color-default 我的第一个学习笔记
+                        li
+                            a(href="#").f14.color-default 我的第一个学习笔记
+                        li
+                            a(href="#").f14.color-default 我的第一个学习笔记
+                div.col-sm-4
+                    div.article-title
+                        h3.f24.color-default
+                            span.glyphicon.glyphicon-thumbs-up.green.f48.mr10
+                            | 学习笔记
+                    ul.list-unstyled
+                        li
+                            a(href="#").f14.color-default 我的第一个学习笔记
+                        li
+                            a(href="#").f14.color-default 我的第一个学习笔记
+                        li
+                            a(href="#").f14.color-default 我的第一个学习笔记
+                        li
+                            a(href="#").f14.color-default 我的第一个学习笔记
+                        li
+                            a(href="#").f14.color-default 我的第一个学习笔记
+                div.col-sm-4
+                    div.article-title
+                        h3.f24.color-default
+                            span.glyphicon.glyphicon-star-empty.green.f48.mr10
+                            | 学习笔记
+                    ul.list-unstyled
+                        li
+                            a(href="#").f14.color-default 我的第一个学习笔记
+                        li
+                            a(href="#").f14.color-default 我的第一个学习笔记
+                        li
+                            a(href="#").f14.color-default 我的第一个学习笔记
+                        li
+                            a(href="#").f14.color-default 我的第一个学习笔记
+                        li
+                            a(href="#").f14.color-default 我的第一个学习笔记
+    script.
+

@@ -1,7 +1,49 @@
+.f14 {
+    font-size: 14px;
+}
+.f16 {
+    font-size: 16px;
+}
+.f18 {
+    font-size: 18px;
+}
+.f20 {
+    font-size: 20px;
+}
+.f24 {
+    font-size: 24px;
+}
+.f48 {
+    font-size: 48px;
+}
+.mr10 {
+    margin-right: 10px;
+}
+.ml10 {
+    margin-left: 10px;
+}
+.ml20 {
+    margin-left: 20px;
+}
+.color-default {
+    color: #506a77;
+}
+.green {
+    color: #28c9ad;
+}
+.bg-green {
+    background-color: #28c9ad;
+}
 
-
-
-
+.container .title {
+    font-size: 24px;
+    color: #506a77;
+    margin-top: 70px;
+}
+.container .title .sub-title {
+    font-size: 14px;
+    margin-top: 20px;
+}
 .navbar-white {
     background-color: #fff;
     color: #333;
@@ -254,7 +296,7 @@ ul.message-list li .reply-list li {
     border: none;
     padding: 10px 0;
 }
-.reply-list .reply-body reply-content {
+.reply-list .reply-body .reply-content {
     line-height: 16px;
 }
 
@@ -272,4 +314,17 @@ ul.message-list li .reply-list li {
 }
 .reply-textarea a.btn {
     margin: 5px 5px 5px 0;
+}
+.article-content {
+    margin-bottom: 50px;
+}
+.article-content .article-title span {
+    vertical-align: middle;
+}
+
+.article-content ul.list-unstyled {
+    margin-left: 60px;
+}
+.article-content ul.list-unstyled li {
+    line-height: 28px;
 }
