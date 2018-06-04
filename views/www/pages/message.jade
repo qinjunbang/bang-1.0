@@ -28,7 +28,7 @@ block content
                             p.content-text  #{item.content}
                             div.reply
                                 span.message-time 2018-04-15 21:55:03
-                                a(href="javascript:void(0);").reply-btn 回复
+                                a(href="javascript:void(0);" data-mid="#{item._id}").reply-btn 回复
                                 if item.reply && item.reply.length > 0
                                     div.line
                             ol.reply-list
@@ -54,9 +54,10 @@ block content
     script.
         //点击回复
         $(".reply-btn").click(function () {
-            console.log("6666",$(this).parents(".message-body"));
+            var mid = $(this).attr("data-mid");
             $(this).parents("li").siblings().find(".message-body .reply-textarea").hide();
             $(this).parents(".message-body").find(".reply-textarea").show();
+            $(".textarea-" + mid).focus();
         });
 
         //点击确认回复
@@ -64,16 +65,14 @@ block content
             var mid = $(this).attr("data-mid"),
                 uid = $(this).attr("data-uid"),
                 content = $(".textarea-" + mid).val(),
-                from = "#{memberInfo._id}";
+                from = $("input[name='from']").val();
 
             if (content === '') {
                 return showModal("内容不能为空", 0);
             } else if (from === '') {
                 return showModal("请你先登录", 0);
             }
-            console.log("mid", mid);
-            console.log("uid", uid);
-            console.log("content", content);
+
             $.post("/message/add", {
                 mid: mid,
                 uid: uid,
@@ -81,5 +80,8 @@ block content
                 from: from
             }, function (res) {
                 console.log("res", res);
+                if (res.status === 1) {
+                    window.location.reload();
+                }
             });
         });
