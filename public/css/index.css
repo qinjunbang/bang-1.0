@@ -34,6 +34,15 @@
 .bg-green {
     background-color: #28c9ad;
 }
+.bg-white {
+    background-color: #fff;
+}
+.no-padding-left {
+    padding-left: 0;
+}
+.no-padding-right {
+    padding-right: 0;
+}
 
 .container .title {
     font-size: 24px;
@@ -42,7 +51,7 @@
 }
 .container .title .sub-title {
     font-size: 14px;
-    margin-top: 20px;
+    /*margin-top: 20px;*/
 }
 .navbar-white {
     background-color: #fff;
@@ -327,4 +336,17 @@ ul.message-list li .reply-list li {
 }
 .article-content ul.list-unstyled li {
     line-height: 28px;
+}
+section.product-list {
+    background-color: #f3f4f6;
+}
+section.product-list .product-content {
+    margin-top: 50px;
+}
+section.product-list .content-footer {
+    height: 68px;
+    border: 1px solid #fff;
+}
+section.product-list .product-other .other-list {
+    margin: 80px -30px 158px;
 }

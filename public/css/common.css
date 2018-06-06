@@ -105,3 +105,33 @@ h1.article-title {
 #img-file {
     display: none;
 }
+.add-img {
+    display: inline-block;
+    width: 76px;
+    height: 76px;
+    color: #ccc;
+    border: 2px dashed;
+    text-indent: -12em;
+    transition: color 0.25s;
+    position: relative;
+    overflow: hidden;
+}
+.add-img:before,.add-img:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+.add-img:before {
+    width: 20px;
+    border-top: 4px solid;
+    margin: -2px 0 0 -10px;
+}
+.add-img:after {
+    height: 20px;
+    border-left: 4px solid;
+    margin: -10px 0 0 -2px;
+}
+.add-img:hover {
+    color: #34538b;
+}

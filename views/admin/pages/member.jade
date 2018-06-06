@@ -111,6 +111,10 @@ block content
                             label.control-label.col-xs-3.col-sm-2.text-right 确认密码
                             div.col-xs-8.col-sm-10
                                 input.form-control(type="password" value="" id="retype_password" name="retype_password" placeholder="再次输入密码")
+                        div.form-group
+                            label.control-label.col-xs-3.col-sm-2.text-right 头像
+                            div.col-xs-8.col-sm-10
+                                div.add-img(onclick="showImageModal();")
                     div.box-footer
                         button.btn.btn-default.pull-right(type="button" onclick="save('/admin/member/add', '#info')") 提交
 

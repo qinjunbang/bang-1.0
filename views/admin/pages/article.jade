@@ -114,7 +114,7 @@ block content
                                 input(type="hidden" name="id" value= data.id)
                                 ul.article-menu.clearfix
                                     li.pull-left
-                                        a(href="javascript:void(0);" onclick="showImageModal();").fa.fa-image
+                                        a(href="javascript:void(0);" onclick="showImageModal('/imagesUpload', 'callBack');").fa.fa-image
                                     li.pull-left
                                         a(href="javascript:void(0);").fa.fa-rotate-left
                                     li.pull-left
@@ -171,4 +171,22 @@ block content
                         console.log("保存文章", res);
                         showModal(res.info);
                     });
+                }
+                //返回函数
+                function callBack(res) {
+                    console.log("res", res);
+                    var imgUrl = window.location.origin + res.data.url;
+                    var text = "![" + res.data.name + "](" + imgUrl + ")";
+
+                    var texteare = document.getElementById('writeArticle');
+                    //获得光标位置或者选中的文本
+                    if (window.getSelection) {
+                        texteare.setRangeText(text); //在光标处插入或者选中文本替换
+                        texteare.selectionStart += text.length;
+                        var converter = new showdown.Converter();
+                        var html = converter.makeHtml(texteare.value);
+                        $("#showArticle").html(html);
+                        texteare.focus();
+                    }
+                    $("#imageModal").modal("hide");
                 }

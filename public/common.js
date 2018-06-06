@@ -194,9 +194,7 @@ function showIframeModal(url, height, cb) {
 }
 
 // 上传图片模态框
-function showImageModal () {
-    console.log(window.getSelection());
-    console.log(document.getSelection());
+function showImageModal (url,cb) {
     var htmlText = [];
     htmlText.push("<div class='modal fade' id='imageModal' role='dialog'>");
     htmlText.push("<div class='modal-dialog modal-sm' role='document'>");
@@ -214,7 +212,7 @@ function showImageModal () {
     htmlText.push("<div class='modal-body'>");
     htmlText.push("<form id='img-form' enctype='multipart/form-data'>");
     htmlText.push("<label for='img-file' class='img-label bg-success'>点击上传图片</label>");
-    htmlText.push("<input type='file' name='img' id='img-file' multiple='multiple' accept='image/*' onchange='uploadsImages();'/>");
+    htmlText.push("<input type='file' name='img' id='img-file' multiple='multiple' accept='image/*' onchange='uploadsImages(\""+url+"\""+ ',' + cb + ");'/>");
     htmlText.push("</div>");
     htmlText.push("<div class='modal-footer'>");
     htmlText.push("<a data-dismiss='modal'> 关闭</a>");
@@ -228,32 +226,18 @@ function showImageModal () {
 }
 
 // 上传图片
-function uploadsImages () {
+function uploadsImages (url, cb) {
     var form = $("#img-form")[0];
     var formData = new FormData(form);
 
     $.ajax({
         type: "POST",
         data: formData,
-        url: '/imagesUpload',
+        url: url,
         processData: false,
         contentType: false,
         success: function (res) {
-            console.log(res);
-            var imgUrl = window.location.origin + res.data.url;
-            var text = "![" + res.data.name + "](" + imgUrl + ")";
-
-            var texteare = document.getElementById('writeArticle');
-            //获得光标位置或者选中的文本
-            if (window.getSelection) {
-                texteare.setRangeText(text); //在光标处插入或者选中文本替换
-                texteare.selectionStart += text.length;
-                var converter = new showdown.Converter();
-                var html = converter.makeHtml(texteare.value);
-                $("#showArticle").html(html);
-                texteare.focus();
-            }
-            $("#imageModal").modal("hide");
+            typeof cb === 'function' && cb(res);
         },
         error: function (err) {
             console.log("err", err);

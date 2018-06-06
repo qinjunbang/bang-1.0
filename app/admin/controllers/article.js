@@ -33,7 +33,7 @@ exports.index.edit = function (req, res) {
                 console.log("err:", err);
             } else {
                 data['contentHtml'] = converter.makeHtml(data['content']);
-                res.render('article', {
+                res.render('./admin/pages/article', {
                     action: 'edit',
                     title: '修改文章',
                     data: data
@@ -41,7 +41,7 @@ exports.index.edit = function (req, res) {
             }
         });
     } else {
-        res.render('article', {
+        res.render('./admin/pages/article', {
             action: 'edit',
             title: '编写文章',
             data: []
