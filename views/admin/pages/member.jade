@@ -51,7 +51,8 @@ block content
                                                 td #{item.id}
                                                 td #{item.name}
                                                 td #{item.password}
-                                                td #{item.img}
+                                                td
+                                                    img(src="#{item.img}" alt="头像" style="max-width: 50px;max-height: 50px;")
                                                 td #{moment(item.add_time).format("YYYY-MM-DD hh:mm:ss")}
                                                 td #{moment(item.updateAt).format("YYYY-MM-DD hh:mm:ss")}
                                         </tbody>
@@ -114,8 +115,22 @@ block content
                         div.form-group
                             label.control-label.col-xs-3.col-sm-2.text-right 头像
                             div.col-xs-8.col-sm-10
-                                div.add-img(onclick="showImageModal();")
+                                input(type="hidden" id="img" name="img" value="")
+                                div.add-img(onclick="showImageModal('/admin/member/uploadImg', 'getImgUrl');")
+                                    img(src="" alt="头像")
                     div.box-footer
                         button.btn.btn-default.pull-right(type="button" onclick="save('/admin/member/add', '#info')") 提交
 
 
+    script.
+        function getImgUrl(res) {
+            console.log("res", res);
+
+            if (res.status == 1) {
+                var localhost = window.location.origin;
+                var imgPath = localhost + res.data.data.url;
+                $(".add-img img").attr("src", imgPath).show();
+                $("#img").val(imgPath);
+            }
+            $("#imageModal").modal("hide");
+        }

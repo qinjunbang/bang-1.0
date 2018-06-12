@@ -45,6 +45,7 @@ exports.edit = function (req, res) {
 
 exports.add = function (req, res) {
     var data = req.body;
+    console.log("data进来了", data);
     if (data.id && data.id !== '') {
         User.findById(data.id, function (err, user) {
             if (err) {
@@ -54,6 +55,7 @@ exports.add = function (req, res) {
                 if (!data.password || data.password === '') {
                     data.password = user.password;
                 }
+                console.log("data", data);
                 var _user = _.extend(user, data);
                 _user.save(function (err, user) {
                     if (err) {

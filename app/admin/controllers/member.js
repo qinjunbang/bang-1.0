@@ -4,6 +4,8 @@
 var mongoose = require('mongoose');
 var Member = mongoose.model('Member');
 var _ = require('underscore');
+var Attachment = require('../../../utils/Attachment');
+
 
 exports.index = function (req, res) {
     Member.find({}).exec(function (err, data) {
@@ -90,4 +92,12 @@ exports.del = function (req, res) {
     } else {
         res.json({info: "删除失败！", status: 0, data: {id: data.id}});
     }
+};
+exports.uploadImg = function (req, res) {
+    var attachment = new Attachment();
+    attachment.saveUploadFile(req, function (info) {
+        console.log("info", info);
+        res.json({status: 1, info: "上传成功!", data: info});
+    });
+
 };

@@ -48,6 +48,7 @@ module.exports = function (app) {
     app.post('/admin/member/add', urlencodedParser, Member.add);
     app.get('/admin/member/edit/:id', Member.edit);
     app.get('/admin/member/edit', Member.edit);
+    app.post('/admin/member/uploadImg', Member.uploadImg);
 
 
     //上传图片

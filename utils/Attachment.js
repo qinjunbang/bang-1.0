@@ -13,20 +13,20 @@ var Attachment = function (opts) {
     this.imgForm.keepExtensions = true;
     this.imgForm.maxFiledsSize = 1 * 1024 *1024;
 
-    this.saveUploadFile(opts);
+    //this.saveUploadFile(opts);
 
 };
 
 Attachment.prototype = {
     //saveUploadFile
-    saveUploadFile: function (req) {
+    saveUploadFile: function (req, cb) {
         var _that = this;
         this.imgForm.parse(req, function (err, fields, files) {
             if (err) {
                 return {status: 0, info: "上传出错啦!", data: [err]};
             }
             // 限制图片大小
-            if (files.img.size > form.maxFiledsSize) {
+            if (files.img.size > _that.imgForm.maxFiledsSize) {
                 fs.unlink(files.img.path);
                 return {
                     status: 0,
@@ -48,10 +48,10 @@ Attachment.prototype = {
                 if (!exists) {
                     var harDir =  _that.createDir(_that.imgForm.uploadDir + dirName);
                     if (harDir) {
-                        _that.writeFile(files.img.path, newPath );
+                      _that.writeFile(files.img.path, newPath, imgName, cb);
                     }
                 } else {
-                    _that.writeFile(files.img.path, newPath );
+                    _that.writeFile(files.img.path, newPath, imgName, cb);
                 }
             });
         });
@@ -92,24 +92,28 @@ Attachment.prototype = {
         return extName;
     },
     //writeFile
-    writeFile: function (oldPath, newPath) {
+    writeFile: function (oldPath, newPath, imgName, cb) {
         fs.rename(oldPath, newPath, function (err) {
+            var info = {};
             if (err) {
                 console.log("err", err);
-                return {
+                info = {
                     status: 0,
                     err: 401,
                     info: "图片上传失败"
                 };
+            } else {
+                newPath = newPath.replace(/.\/public\//, "/");
+                info = {
+                    status: 1,
+                    info: "上传成功",
+                    data: {
+                        url: newPath,
+                        name: imgName
+                    }
+                };
             }
-            return {
-                status: 1,
-                info: "上传成功",
-                data: {
-                    url:"/uploads/" + timestamp  + "/" + imageName,
-                    name: imageName
-                }
-            };
+            typeof cb === 'function' && cb(info);
         });
     }
 };

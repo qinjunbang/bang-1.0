@@ -135,3 +135,12 @@ h1.article-title {
 .add-img:hover {
     color: #34538b;
 }
+.add-img img {
+    width: 76px;
+    height: 76px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    display: none;
+}
