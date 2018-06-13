@@ -5,7 +5,7 @@
 // 保存提交
 function save (url, formId) {
     saveForm(url, formId, function (res) {
-        console.log(res);
+        console.log("res", res);
         if (res.status === 1) {
             showModal(res.info, 1);
         } else {

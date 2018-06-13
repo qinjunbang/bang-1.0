@@ -22,8 +22,11 @@ header.navbar.navbar-static-top.bs-docs-nav.navbar-white#top
                 a(href='/register').btn.btn-green.navbar-btn.pull-right.register-btn 注册
             else
                 div.user-head.pull-right.dropdown
-                    a(href='javascript:;').head-avatar.pull-left
-                        img(src="/images/www/head.jpg" alt="头像").img-responsive.pull-left
+                    a(href='javascript:#{memberInfo.img};').head-avatar.pull-left
+                        if memberInfo.img
+                            img(src="#{memberInfo.img}" alt="头像").img-responsive.pull-left
+                        else
+                            img(src="/images/www/head.jpg" alt="头像").img-responsive.pull-left
                     span.user-name.pull-left    #{memberInfo.name}
                     span.triangle.pull-left
                     ul.dropdown-menu

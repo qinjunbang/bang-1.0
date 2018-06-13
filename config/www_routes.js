@@ -11,6 +11,11 @@ var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({extended: false});
 
 module.exports = function (app) {
+    app.use(function (req, res, next) {
+        var memberInfo = req.session.memberInfo;
+        app.locals.memberInfo = memberInfo;
+        next();
+    });
     app.get('/', Index.index);
     app.get('/index', Index.index);
     app.get('/about', About.index);

@@ -19,9 +19,7 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false }); // create app
 module.exports = function (app) {
     app.use(function (req, res, next) {
         var userInfo = req.session.userInfo;
-        var memberInfo = req.session.memberInfo;
         app.locals.userInfo = userInfo;
-        app.locals.memberInfo = memberInfo;
         next();
     });
     app.get('/admin', Index.index);

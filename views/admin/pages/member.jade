@@ -117,7 +117,7 @@ block content
                             div.col-xs-8.col-sm-10
                                 input(type="hidden" id="img" name="img" value="")
                                 div.add-img(onclick="showImageModal('/admin/member/uploadImg', 'getImgUrl');")
-                                    img(src="" alt="头像")
+                                    img(src="#{data.img}" alt="头像" style="display: #{data.img?'block':'none'}")
                     div.box-footer
                         button.btn.btn-default.pull-right(type="button" onclick="save('/admin/member/add', '#info')") 提交
 
