@@ -46,10 +46,10 @@ Attachment.prototype = {
             var newPath = _that.imgForm.uploadDir + dirName + "/" + imgName;
             fs.exists(_that.imgForm.uploadDir + dirName, function (exists) {
                 if (!exists) {
-                    var harDir =  _that.createDir(_that.imgForm.uploadDir + dirName);
-                    if (harDir) {
-                      _that.writeFile(files.img.path, newPath, imgName, cb);
-                    }
+                    _that.createDir(_that.imgForm.uploadDir + dirName, function () {
+                        _that.writeFile(files.img.path, newPath, imgName, cb);
+                    });
+
                 } else {
                     _that.writeFile(files.img.path, newPath, imgName, cb);
                 }
@@ -57,10 +57,9 @@ Attachment.prototype = {
         });
     },
     //createDir
-    createDir: function (pathName) {
+    createDir: function (pathName, cb) {
         var creats = fs.mkdirSync(pathName);
-        console.log("creats", creats);
-        return creats;
+        typeof cb === 'function' && cb(creats);
     },
     //getFileName
     getFileName: function (extName) {
