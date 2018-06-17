@@ -22,7 +22,11 @@ var MessageSchema = new Schema({
             type: ObjectId,
             ref: 'Member'
         },
-        content: String
+        content: String,
+        add_time: {
+            type: Date,
+            default: Date.now()
+        }
     }],
 
     content: String,

@@ -26,4 +26,5 @@ module.exports = function (app) {
     app.all('/register', urlencodedParser, Index.register);
     app.get('/logout', Index.logout);
     app.post('/message/add', urlencodedParser, Message.add);
+    app.post('/message/select', urlencodedParser, Message.select);
 };

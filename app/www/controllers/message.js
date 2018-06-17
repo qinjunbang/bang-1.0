@@ -6,7 +6,7 @@ var Message = mongoose.model('Message');
 var _ = require('underscore');
 
 exports.index = function (req, res) {
-    Message.find({}).populate('from','name').populate('reply.from reply.to', 'name').sort({"add_time": -1}).exec(function (err, data) {
+    Message.find({}).populate('from','name img').populate('reply.from reply.to', 'name img').sort({"add_time": -1}).exec(function (err, data) {
         if (err) {
             console.log(err);
         } else {
@@ -60,4 +60,13 @@ exports.add = function (req, res) {
 
     }
 
+};
+exports.select = function (req, res) {
+    Message.find({}).populate('from','name img').populate('reply.from reply.to', 'name img').sort({"add_time": -1}).exec(function (err, data) {
+        if (err) {
+            console.log(err);
+        } else {
+           res.json({status: 1, info: "获取数据成功", data: data});
+        }
+    });
 };
