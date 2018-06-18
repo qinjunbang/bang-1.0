@@ -4,4 +4,135 @@ extends ../layout
 
 block content
     include ../Public/header
-    h1 自我介绍
+    section.banner
+        img(src="images/www/banner.jpg" alt="幻灯").img-responsive
+    section.skills
+        div.container
+            div.title.text-center
+                h2 职业·技能
+                p.sub-title My Technical Skills
+            div.skills-content
+                div.skills-bar
+                    p.f18 Html
+                    div.progress
+                        div.progress-bar.progress-bar-success(role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%")
+                            span.sr-only 80%
+                div.skills-bar
+                    p.f18 Css
+                        div.progress
+                            div.progress-bar.progress-bar-success(role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%")
+                                span.sr-only 80%
+                div.skills-bar
+                    p.f18 Javascript
+                        div.progress
+                            div.progress-bar.progress-bar-success(role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%")
+                                span.sr-only 75%
+                div.skills-bar
+                    p.f18 jQuery
+                        div.progress
+                            div.progress-bar.progress-bar-success(role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%")
+                                span.sr-only 75%
+                div.skills-bar
+                    p.f18 Node.js
+                        div.progress
+                            div.progress-bar.progress-bar-success(role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%")
+                                span.sr-only 40%
+                div.skill-bar
+                    p.f18 Php
+                        div.progress
+                            div.progress-bar.progress-bar-success(role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%")
+                                span.sr-only 20%
+    section.use-frame
+        div.container
+            div.title.text-center
+                h2 常用·框架
+                p.sub-title The frame I often use
+            div.frame-content
+                ul.list-unstyled.use-frame-list
+                    li.col-sm-3
+                        a(href="javascript: void(0);")
+                            div.img
+                                img(src="images/www/jquery.jpg" alt="jquery").img-responsive
+                            p.text.f18.text-center jQuery
+                    li.col-sm-3
+                        a(href="javascript: void(0);")
+                            div.img
+                                img(src="images/www/bootstrap.jpg" alt="bootstrap").img-responsive
+                            p.text.f18.text-center Bootstrap
+                    li.col-sm-3
+                        a(href="javascript: void(0);")
+                            div.img
+                                img(src="images/www/ionic.jpg" alt="ionic").img-responsive
+                            p.text.f18.text-center Ionic2
+                    li.col-sm-3
+                        a(href="javascript: void(0);")
+                            div.img
+                                img(src="images/www/angular.jpg" alt="angular").img-responsive
+                            p.text.f18.text-center AngularJs
+                    li.col-sm-3
+                        a(href="javascript: void(0);")
+                            div.img
+                                img(src="images/www/xcx.jpg" alt="xcx").img-responsive
+                            p.text.f18.text-center 微信小程序
+                    li.col-sm-3
+                        a(href="javascript: void(0);")
+                            div.img
+                                img(src="images/www/adminlte.jpg" alt="adminlte").img-responsive
+                            p.text.f18.text-center AdminLTE
+                    li.col-sm-3
+                        a(href="javascript: void(0);")
+                            div.img
+                                img(src="images/www/express.jpg" alt="express").img-responsive
+                            p.text.f18.text-center Express
+                    li.col-sm-3
+                        a(href="javascript: void(0);")
+                            div.img
+                                img(src="images/www/learn-more.jpg" alt="learn-more").img-responsive
+                            p.text.f18.text-center 没有更多了
+    section.hobbies
+        div.container
+            div.title.text-center
+                h2 兴趣·爱好
+                p.sub-title Hobbies and Interests
+            div.hobbies-content
+                ul.list-unstyled.hobbies-list
+                    li.col-sm-3
+                        a(href="javascript: void(0);")
+                            div.img
+                                img(src="images/www/music.jpg" alt="听音乐").img-responsive.mr-auto
+                            p.text.f18.text-center 听音乐
+                    li.col-sm-3
+                        a(href="javascript: void(0);")
+                            div.img
+                                img(src="images/www/game.jpg" alt="打游戏").img-responsive.mr-auto
+                            p.text.f18.text-center 打游戏
+                    li.col-sm-3
+                        a(href="javascript: void(0);")
+                            div.img
+                                img(src="images/www/singing.jpg" alt="K歌").img-responsive.mr-auto
+                            p.text.f18.text-center K歌
+                    li.col-sm-3
+                        a(href="javascript: void(0);")
+                            div.img
+                                img(src="images/www/eat.jpg" alt="吃肉").img-responsive.mr-auto
+                            p.text.f18.text-center 吃肉
+                    li.col-sm-3
+                        a(href="javascript: void(0);")
+                            div.img
+                                img(src="images/www/belle.jpg" alt="belle").img-responsive.mr-auto
+                            p.text.f18.text-center 美女
+                    li.col-sm-3
+                        a(href="javascript: void(0);")
+                            div.img
+                                img(src="images/www/fishing.jpg" alt="钓鱼").img-responsive.mr-auto
+                            p.text.f18.text-center 钓鱼
+                    li.col-sm-3
+                        a(href="javascript: void(0);")
+                            div.img
+                                img(src="images/www/tourism.jpg" alt="旅游").img-responsive.mr-auto
+                            p.text.f18.text-center 旅游
+                    li.col-sm-3
+                        a(href="javascript: void(0);")
+                            div.img
+                                img(src="images/www/reading.jpg" alt="看书").img-responsive.mr-auto
+                            p.text.f18.text-center 看书

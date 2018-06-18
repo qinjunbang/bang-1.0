@@ -16,6 +16,9 @@
 .f48 {
     font-size: 48px;
 }
+.mr-auto {
+    margin: 0 auto;
+}
 .mr10 {
     margin-right: 10px;
 }
@@ -61,6 +64,9 @@
     border-bottom: 1px solid #ddd;
     height: 60px;
     margin: 0;
+}
+.progress-bar-success {
+    background-color: #02bf9f;
 }
 .logo img {
     margin-top: 10px;
@@ -349,4 +355,26 @@ section.product-list .content-footer {
 }
 section.product-list .product-other .other-list {
     margin: 80px -30px 158px;
+}
+section.skills {
+    padding-bottom: 85px;
+}
+section.skills .skills-bar {
+    margin-top: 40px;
+}
+section.use-frame {
+    background-color: #f3f4f6;
+    padding-bottom: 65px;
+}
+section.use-frame .use-frame-list li,
+section.hobbies .hobbies-list li {
+    margin-top: 40px;
+}
+section.use-frame .use-frame-list li p.text {
+    color: #333;
+    margin-top: 15px;
+}
+section.hobbies .hobbies-list li p.text {
+    color: #333;
+    margin: 40px 0;
 }
