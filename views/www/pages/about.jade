@@ -6,6 +6,7 @@ block content
     include ../Public/header
     section.banner
         img(src="images/www/banner.jpg" alt="幻灯").img-responsive
+    // 职业技能
     section.skills
         div.container
             div.title.text-center
@@ -42,6 +43,7 @@ block content
                         div.progress
                             div.progress-bar.progress-bar-success(role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%")
                                 span.sr-only 20%
+    // 常用框架
     section.use-frame
         div.container
             div.title.text-center
@@ -89,6 +91,7 @@ block content
                             div.img
                                 img(src="images/www/learn-more.jpg" alt="learn-more").img-responsive
                             p.text.f18.text-center 没有更多了
+    // 兴趣爱好
     section.hobbies
         div.container
             div.title.text-center
@@ -136,3 +139,29 @@ block content
                             div.img
                                 img(src="images/www/reading.jpg" alt="看书").img-responsive.mr-auto
                             p.text.f18.text-center 看书
+    // 与我联系
+    section.contact-me
+        div.container
+            div.title.text-center
+                h2 与我·联系
+                p.sub-title Contact Me
+            div.contace-me-content
+                div.col-md-1
+                div.col-md-5
+                    div.myself
+                        h4 自我介绍
+                        p 本人，资深宅男小前端一枚。长相，高端大气上档次。品味，独特典雅有内涵。文能提笔撸代码，武能下劈一字马。如果你对本人感兴趣，请与我联系，给你一个不一样的人生体验。
+                div.col-md-5
+                    form.from
+                        div.form-group
+                            label(for="email") 你的邮箱
+                            input(type="email" name="email" id="email" placeholder="请输入你的邮箱").form-control
+                        div.form-group
+                            label(for="title") 标题
+                            input(type="text" name="title" id="title" placeholder="请输入邮件的标题").form-control
+                        div.form-group
+                            label(for="content") 内容
+                            textarea(name="content" id="content" rows="6" placeholder="请输入邮件的内容").form-control
+                        div.form-group
+                            button.btn.btn-green  发送邮件
+                div.col-md-1

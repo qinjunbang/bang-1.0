@@ -374,7 +374,28 @@ section.use-frame .use-frame-list li p.text {
     color: #333;
     margin-top: 15px;
 }
+section.hobbies {
+    padding-bottom: 65px;
+}
 section.hobbies .hobbies-list li p.text {
     color: #333;
     margin: 40px 0;
+}
+section.contact-me {
+    background-color: #f3f4f6;
+    padding-bottom: 65px;
+}
+section.contact-me .myself {
+    margin-top: 158px;
+}
+section.contact-me .myself h4 {
+    font-weight: 400;
+}
+section.contact-me .myself p {
+    margin: 20px 45px 10px 20px;
+    text-indent: 2em;
+    line-height: 28px;
+}
+section.contact-me form.from {
+    margin-top: 80px;
 }
