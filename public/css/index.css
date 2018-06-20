@@ -257,6 +257,9 @@ section.message-info .message-content .btn-published {
     font-size: 18px;
     padding: 3px 30px;
 }
+div.message-footer {
+    margin: 20px 0 60px;
+}
 ul.message-list, ol.reply-list {
     list-style: none;
     padding: 0;
@@ -398,4 +401,79 @@ section.contact-me .myself p {
 }
 section.contact-me form.from {
     margin-top: 80px;
+}
+footer.footer {
+    color: #fff;
+    background-color: #2f4052;
+}
+
+footer.footer .footer-title {
+    margin-top: 40px;
+}
+footer.footer  ol.links {
+    margin: 20px 0;
+}
+footer.footer  ol.links li a {
+    font-size: 12px;
+    color: #fff;
+    line-height: 24px;
+}
+footer.footer .classic {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 15px 0 20px;
+}
+footer.footer .classic-img {
+    width: 65px;
+    height: 45px;
+    background-color: #293646;
+    margin-right: 10px;
+    margin-top: 10px;
+
+}
+footer.footer .code {
+    margin: 15px 0 20px;
+}
+footer.footer .code-img {
+    min-width: 88px;
+    min-height: 88px;
+    background-color: #293646;
+}
+footer.footer .contact-me {
+    margin-top: 15px;
+}
+footer.footer .contact-me p {
+    font-size: 12px;
+}
+footer.footer .contact-me .info {
+    height: 34px;
+    background: #525f6f;
+    padding-left: 10px;
+    display: flex;
+    justify-content: space-between;
+
+}
+footer.footer .contact-me .info input {
+    border: none;
+    background: none;
+    outline: none;
+    height: 34px;
+    line-height: 34px;
+}
+footer.footer .contact-me .info button {
+    margin-top: 5px;
+    margin-right: 10px;
+    height: 25px;
+    border-radius: 0;
+}
+/*改变placeholder的颜色和字体大小*/
+footer.footer .contact-me .info input::-moz-placeholder { color: #fff; font-size: 12px;}
+footer.footer .contact-me .info input::-webkit-input-placeholder { color:#fff; font-size: 12px;}
+footer.footer .contact-me .info input:-ms-input-placeholder { color:#fff; font-size: 12px;}
+
+footer.footer .copyright {
+    line-height: 45px;
+    text-align: center;
+    background-color: #293646;
+    margin-top: 15px;
 }
