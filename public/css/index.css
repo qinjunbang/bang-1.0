@@ -1,3 +1,11 @@
+.flex {
+    display: flex;
+}
+.nowrap {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
 .f14 {
     font-size: 14px;
 }
@@ -476,4 +484,45 @@ footer.footer .copyright {
     text-align: center;
     background-color: #293646;
     margin-top: 15px;
+}
+section.article-category .flex {
+    flex-wrap: wrap;
+}
+section.article-category .flex a.btn {
+    margin: 35px 35px 35px 0;
+}
+section.my-article .article-list .article-title {
+    font-size: 18px;
+    color: #333;
+}
+section.my-article .article-list li {
+    border-top: 1px solid #dedede;
+    border-bottom: 1px solid #dedede;
+    margin-top: -1px;
+}
+section.my-article .article-list .summary {
+    font-size: 16px;
+    color: #333;
+    max-height: 80px;
+    line-height: 28px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+}
+section.my-article .article-list .info {
+    font-size: 12px;
+    color: #999;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+section.my-article .article-list .info span {
+    margin-right: 20px;
+
+}
+section.my-article .article-list .info span i {
+    margin-right: 5px;
+}
+section.my-article .article-list .img img {
+    margin-top: 50px;
 }

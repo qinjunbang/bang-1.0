@@ -5,7 +5,64 @@ extends ../layout
 
 block content
     include ../Public/header
-    div(style="min-height: 888px;")
-        h1 文章列表
+    section.banner
+        img(src="images/www/banner.jpg" alt="幻灯").img-responsive
+    section.article-category
+        div.container
+            div.flex
+                a(href="#").btn.btn-default 学习笔记
+                a(href="#").btn.btn-default 读后感
+                a(href="#").btn.btn-default 随笔
+                a(href="#").btn.btn-default 总结
+                a(href="#").btn.btn-default 公告
+    section.my-article
+        div.container
+            div.row
+                div.col-sm-8
+                    ul.article-list.list-unstyled
+                        li.row
+                            a(href="")
+                                div.text.col-sm-7
+                                    h2.article-title.nowrap 文章标题文章标题
+                                    p.summary 一直以来，都想有一个自己有网站。自从上了大学，接触到网页设计，这个想法就没停止过。还记得大学上课的时候，老师打开了记事本，写了几个HTML标签，然后用浏览器打开，这样，一个最...
+                                    p.info
+                                        span
+                                            i.glyphicon.glyphicon-eye-open
+                                            |202
+                                        span
+                                            i.glyphicon.glyphicon-edit
+                                            |21
+                                        span
+                                            i.glyphicon.glyphicon-heart
+                                            |23
+                                        span 分类随笔
+                                        span
+                                            i.glyphicon.glyphicon-time
+                                            |2018-06-27 20:20:29
+                                div.img.col-sm-5
+                                    img(src="/images/www/product-list.jpg" alt="" title="" style="width: 150px;height: 120px;").img-responsive
+                        li.row
+                            a(href="")
+                                div.text.col-sm-7
+                                    h2.article-title.nowrap 文章标题文章标题
+                                    p.summary 一直以来，都想有一个自己有网站。自从上了大学，接触到网页设计，这个想法就没停止过。还记得大学上课的时候，老师打开了记事本，写了几个HTML标签，然后用浏览器打开，这样，一个最...
+                                    p.info
+                                        span
+                                            i.glyphicon.glyphicon-eye-open
+                                            | 202
+                                        span
+                                            i.glyphicon.glyphicon-edit
+                                            | 21
+                                        span
+                                            i.glyphicon.glyphicon-heart
+                                            | 23
+                                        span 分类随笔
+                                        span
+                                            i.glyphicon.glyphicon-time
+                                            | 2018-06-27 20:20:29
+                                div.img.col-sm-5
+                                    img(src="/images/www/product-list.jpg" alt="" title="" style="width: 150px;height: 120px;").img-responsive
+                div.col-sm-4
+
 
     include ../Public/footer
