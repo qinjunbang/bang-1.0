@@ -5,6 +5,7 @@ var Index = require('../app/admin/controllers/index');
 var Bill = require('../app/admin/controllers/bill');
 var User = require('../app/admin/controllers/user');
 var Article = require('../app/admin/controllers/article');
+var ArticleType = require('../app/admin/controllers/articleType');
 var Member = require('../app/admin/controllers/Member');
 
 var bodyParser = require('body-parser');
@@ -36,6 +37,11 @@ module.exports = function (app) {
     app.post('/admin/user/add', urlencodedParser, User.add);
     app.get('/admin/user/edit/:id', User.edit);
     app.get('/admin/user/edit', User.edit);
+    app.get('/admin/articleType', ArticleType.index);
+    app.get('/admin/articleType/edit', ArticleType.index.edit);
+    app.get('/admin/articleType/edit/:id', ArticleType.index.edit);
+    app.post('/admin/articleType/add', urlencodedParser, ArticleType.index.add);
+    app.post('/admin/articleType/del', urlencodedParser, ArticleType.index.del);
     app.get('/admin/article', Article.index);
     app.get('/admin/article/edit', Article.index.edit);
     app.get('/admin/article/edit/:id', Article.index.edit);

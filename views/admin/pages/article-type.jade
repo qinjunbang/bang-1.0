@@ -1,0 +1,106 @@
+//
+   Created by junbangqin on 2018/7/2.
+
+extends ../layout
+
+block content
+    case action
+        when "index"
+            include ../Public/main-header
+            include ../Public/left-menu
+            div.content-wrapper
+                section.content-header
+                    h1 文章分类管理
+                    ol.breadcrumb
+                        li
+                            a(href="#")
+                                i.fa.fa-dashboard   首页
+                        li
+                            a(href="#") 文章分类管理
+                        li.active 列表
+                section.content
+                    div.box-body
+                        div.box
+                            div.box-header.row
+                                div.btn-group.col-sm-5(role="group")
+                                    a.btn.btn-default(onclick="add('/admin/articleType/edit', 125)")
+                                        i.fa.fa-plus  新增
+                                    a.btn.btn-default(onclick="edit('/admin/articleType/edit', '#formList', 125)")
+                                        i.fa.fa-file-text-o  编辑
+                                    a.btn.btn-default(onclick="add()")
+                                        i.fa.fa-search  查看
+                                    a.btn.btn-default(onclick="del('/admin/articleType/del', '#formList')")
+                                        i.fa.fa-trash  删除
+                            div.box-body
+                                form#formList
+                                    table#tableList.table.table-bordered.table-striped
+                                        thead
+                                            tr
+                                                th
+                                                    input#checkAll.minimal(type="checkbox")
+                                                th  ID
+                                                th  分类名称
+                                                th  添加时间
+                                                th  更新时间
+                                        <tbody>
+                                        each item in data
+                                            tr
+                                                td.checkBox
+                                                    input.minimal(type="checkbox" value="#{item.id}" name="id")
+                                                td #{item.id}
+                                                td #{item.name}
+                                                td #{moment(item.add_time).format("YYYY-MM-DD hh:ss:mm")}
+                                                td #{moment(item.updata_time).format("YYYY-MM-DD hh:ss:mm")}
+                                        </tbody>
+                script(type="text/javascript").
+                    $(document).ready(function () {
+                        $("#tableList").DataTable({
+                            lengthChange: true,
+                            searching: true,
+                            ordering: true,
+                            paging: true,
+                            lengthMenu: [
+                                [10, 25, 50, -1],
+                                ["10", "25", "50", "所有"]
+                            ],
+                            oLanguage: {
+                                sInfo: "从 _START_ 到 _END_ /共 _TOTAL_ 条数据",
+                                sLengthMenu: "显示 _MENU_ 条",
+                                sSearch: "查找",
+                                oPaginate: {
+                                    sNext: "下一页",
+                                    sPrevious: "上一页",
+                                    sFirst: "首页",
+                                    sEnd: "尾页"
+
+                                }
+                            },
+                            footerCallback: function (row, data, start, end, display) {
+                                $("input").iCheck({
+                                    checkboxClass: "icheckbox_square-blue",
+                                    radioClass: 'iradio_square-blue',
+                                    increaseArea: '20%' /* optional */
+                                });
+
+                                $("#checkAll").on("ifChecked", function (event) {
+                                    $(".checkbox input").iCheck("check");
+                                });
+                                $("#checkAll").on("ifUnChecked", function (event) {
+                                    $(".checkbox input").iCheck("uncheck");
+                                });
+                            }
+                        });
+                    });
+
+        when "edit"
+            div.box.box-info.module-box-l
+                form#info.form-horizontal(name="info")
+                    input(type="hidden" id="id" name="id" value= data.id)
+                    div.box-body
+                        div.form-group
+                            label.control-label.col-xs-3.col-sm-2.text-right 分类名称
+                            div.col-xs-8.col-sm-10
+                                input.form-control(type="text" value= data.name id="name" name="name" placeholder="请输入分类名称")
+                    div.box-footer
+                        button.btn.btn-default.pull-right(type="button" onclick="save('/admin/articleType/add', '#info')") 提交
+
