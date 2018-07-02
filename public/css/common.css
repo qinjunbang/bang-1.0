@@ -83,6 +83,7 @@ h1.article-title {
     height: 84.4vh;
     border-top: 1px solid transparent;
     padding: 20px 20px 80px;
+    overflow-y: auto;
 }
 #showArticle p {
     word-break: break-all; //只对英文起作用，以字母作为换行依据。
@@ -92,6 +93,11 @@ h1.article-title {
 #showArticle img {
     display: block;
     margin: 0 auto;
+}
+select.article-category {
+    display: inline-block;
+    margin-top: 7px;
+    margin-left: 5px;
 }
 .img-label {
     display: block;
