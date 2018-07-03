@@ -513,7 +513,7 @@ section.my-article .article-list li a {
 section.my-article .article-list .summary {
     font-size: 16px;
     color: #333;
-    max-height: 80px;
+    height: 80px;
     line-height: 28px;
     overflow: hidden;
     display: -webkit-box;
