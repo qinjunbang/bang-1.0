@@ -10,7 +10,7 @@ var converter = new showdown.Converter();
 
 // 首页
 exports.index = function (req, res) {
-    Article.find({}).exec(function (err, data) {
+    Article.find({}).populate('categoryId', 'name').exec(function (err, data) {
         if (err) {
             console.log("err:", err);
         }

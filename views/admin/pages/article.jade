@@ -38,9 +38,11 @@ block content
                                                     input#checkAll.minimal(type="checkbox")
                                                 th  ID
                                                 th  标题
+                                                th  分类
                                                 th  简介
                                                 th  缩略图
                                                 th  添加时间
+                                                th  更新时间
                                         <tbody>
                                         each item in data
                                             tr
@@ -48,11 +50,13 @@ block content
                                                     input.minimal(type="checkbox" value="#{item.id}" name="id")
                                                 td #{item.id}
                                                 td 《#{item.title}》
+                                                td #{item.categoryId.name}
                                                 td
                                                     p(style="max-width: 450px;max-height: 60px; overflow:hidden;") #{item.summary}
                                                 td
                                                     img(src="#{item.img}" style="max-width: 100px;max-height: 50px;")
                                                 td #{moment(item.add_time).format("YYYY-MM-DD hh:ss:mm")}
+                                                td #{moment(item.update_time).format("YYYY-MM-DD hh:ss:mm")}
                                         </tbody>
                 script(type="text/javascript").
                     $(document).ready(function () {
@@ -121,7 +125,7 @@ block content
                                         a(href="javascript:void(0);").fa.fa-rotate-right
                                     li.pull-left
                                         //a(href="javascript:void(0);").fa.fa-clock-o
-                                        select.article-category
+                                        select.article-category#categoryId(name="categoryId")
                                             option 随笔
                                             option 总结
                                     li.pull-right
@@ -156,6 +160,9 @@ block content
                         $("h1.article-title").text(text);
                     });
 
+                    // 获取文章分类
+                    getSelectData('/admin/articleType/select', '#categoryId', '#{data.categoryId}');
+
                 });
 
                 //发布文章
@@ -169,6 +176,7 @@ block content
                     data['summary'] = $("#showArticle").text().substring(0, 98);
                     data['img'] = $(img).attr("src");
                     data['id'] = $("input[name='id']").val();
+                    data['categoryId'] = $("select[name='categoryId']").val();
 
                     $.post("/admin/article/add", data, function (res) {
                         console.log("保存文章", res);

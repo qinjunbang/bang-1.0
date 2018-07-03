@@ -244,3 +244,33 @@ function uploadsImages (url, cb) {
         }
     });
 }
+
+/*
+* 创建下拉框数据
+* @param url 路径
+* @param ele selectID
+* @param val 默认选中项
+* */
+function getSelectData (url, ele, val) {
+    $.post(url, {}, function (res) {
+        if (res.status) {
+            var ldata = res.data,
+                htmlText = [];
+
+            for (var i = 0 , len = ldata.length; i < len; i++) {
+                // 如果有选中项
+                if (val === ldata[i]._id) {
+                    htmlText.push('<option value="'+ ldata[i]._id +'" selected>');
+                } else {
+                    htmlText.push('<option value="'+ ldata[i]._id +'">');
+                }
+
+                htmlText.push(ldata[i].name);
+                htmlText.push('</option>');
+            }
+
+            $(ele).html(htmlText.join(''));
+        }
+
+    })
+}

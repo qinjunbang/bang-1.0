@@ -42,6 +42,7 @@ module.exports = function (app) {
     app.get('/admin/articleType/edit/:id', ArticleType.index.edit);
     app.post('/admin/articleType/add', urlencodedParser, ArticleType.index.add);
     app.post('/admin/articleType/del', urlencodedParser, ArticleType.index.del);
+    app.post('/admin/articleType/select', urlencodedParser, ArticleType.index.select);
     app.get('/admin/article', Article.index);
     app.get('/admin/article/edit', Article.index.edit);
     app.get('/admin/article/edit/:id', Article.index.edit);

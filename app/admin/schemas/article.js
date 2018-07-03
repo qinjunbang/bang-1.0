@@ -3,12 +3,17 @@
  */
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var ObjectId = Schema.Types.ObjectId; // 联表查询
 
 var ArticleSchema = new Schema({
     title: String, //标题
     summary: String, //简介
     content: String, //内容
     img: String, //图片
+    categoryId: {
+        type: ObjectId,
+        ref: "ArticleType" // 关联表
+    }, // 类别
     updateAt: {
       type: Date,
       default: Date.now()

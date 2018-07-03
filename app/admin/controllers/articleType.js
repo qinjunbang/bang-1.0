@@ -96,3 +96,13 @@ exports.index.del = function (req, res) {
         });
     }
 };
+exports.index.select = function (req, res) {
+    ArticleType.find({}).exec(function (err, articleType) {
+        if (err) {
+            console.log("err", err);
+            res.json({status: 0, info: "获取数据失败!", data: err});
+        } else {
+            res.json({status: 1, info: "获取数据成功!", data: articleType});
+        }
+    });
+};
