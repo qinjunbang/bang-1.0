@@ -19,7 +19,7 @@ block content
                     ul.article-list.list-unstyled
                         each item in data.article
                             li.row
-                                a(href="")
+                                a(href="/articleList/Detail/#{item._id}")
                                     div.text.col-sm-7
                                         h2.article-title.nowrap #{item.title}
                                         p.summary #{item.summary}
@@ -38,23 +38,6 @@ block content
                                             img(src="#{item.img}" alt="" title="" style="width: 150px;height: 120px;").img-responsive
                                         else
                                             img(src="/images/www/product-list.jpg" alt="" title="" style="width: 150px;height: 120px;").img-responsive
-                        //li.row
-                        //    a(href="")
-                        //        div.text.col-sm-7
-                        //            h2.article-title.nowrap 文章标题文章标题
-                        //            p.summary 一直以来，都想有一个自己有网站。自从上了大学，接触到网页设计，这个想法就没停止过。还记得大学上课的时候，老师打开了记事本，写了几个HTML标签，然后用浏览器打开，这样，一个最...
-                        //            p.info
-                        //                span
-                        //                    i.glyphicon.glyphicon-eye-open
-                        //                    | 202
-                        //                span
-                        //                    i.glyphicon.glyphicon-edit
-                        //                    | 21
-                        //                span
-                        //                    i.glyphicon.glyphicon-heart
-                        //                    | 23
-                        //        div.img.col-sm-5
-                        //            img(src="/images/www/product-list.jpg" alt="" title="" style="width: 150px;height: 120px;").img-responsive
                 div.col-sm-4
                     div.hot-title.mb10.gary9 热门文章
                     ul.article-list.article-hot-list.list-unstyled

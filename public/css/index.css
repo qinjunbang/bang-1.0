@@ -27,6 +27,12 @@
 .mr-auto {
     margin: 0 auto;
 }
+.mr-5 {
+    margin-right: 5px;
+}
+.ml-5 {
+    margin-left: 5px;
+}
 .mr10 {
     margin-right: 10px;
 }
@@ -41,6 +47,12 @@
 }
 .color-default {
     color: #506a77;
+}
+.color-b {
+    color: #bbb!important;
+}
+.gary3 {
+    color: #333!important;
 }
 .gary9 {
     color: #969696!important;
@@ -550,4 +562,35 @@ section.my-article .article-hot-list p.summary {
 section.my-article .article-hot-list  div.img img {
     max-height: 85px;
     margin-top: 38px;
+}
+section.sub-banner {
+    height: 105px;
+    background-color: #c8c8c8;
+    margin: 42px auto;
+}
+section.article-header .header {
+    position: relative;
+}
+section.article-header .header .info {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+section.article-header .header .info {
+    margin-right: -28px;
+}
+section.article-header .header .info span {
+    display: inline-block;
+    padding: 1px 32px;
+    border-right: 1px solid #bbb;
+}
+section.article-header .header .info span:last-child {
+    border: 0;
+}
+section.article-content {
+    border-top: 1px solid #bbb;
+    margin: 45px auto;
+}
+section.article-content .content {
+    padding: 40px 20px 80px;
 }

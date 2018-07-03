@@ -20,6 +20,7 @@ module.exports = function (app) {
     app.get('/index', Index.index);
     app.get('/about', About.index);
     app.get('/articleList', ArticleList.index);
+    app.get('/articleList/Detail/:id', ArticleList.index.detail);
     app.get('/works', Works.index);
     app.get('/message', Message.index);
     app.all('/login', urlencodedParser, Index.login);

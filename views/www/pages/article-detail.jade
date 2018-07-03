@@ -1,0 +1,29 @@
+//
+   Created by junbangqin on 2018/7/3.
+extends ../layout
+
+block content
+    include ../Public/header
+    div.container
+        section.sub-banner
+            img(src="" alt).img-responsive
+        section.article-header
+            div.header
+                h1.f24.gary3 #{data.title}
+                p.time.f14.color-b #{moment(data.add_time).format("YYYY-MM-DD hh:ss:mm")}
+                    span.ml-5 发布
+                div.info
+                    span.color-b
+                        i.glyphicon.glyphicon-eye-open.mr-5
+                        | 202
+                    span.color-b
+                        i.glyphicon.glyphicon-edit.mr-5
+                        | 21
+                    span.color-b
+                        i.glyphicon.glyphicon-heart.mr-5
+                        | 23
+    section.article-content
+        div.container
+            div.content
+                !{data.contentHtml}
+    include ../Public/footer
