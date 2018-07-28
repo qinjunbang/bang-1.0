@@ -1,0 +1,147 @@
+//
+   Created by junbangqin on 2018/7/28.
+extends ../layout
+
+block content
+    include ../Public/main-header
+    include ../Public/left-menu
+    case action
+        when "index"
+            div.content-wrapper
+                section.content-header
+                    h1 作品管理
+                    ol.breadcrumb
+                        li
+                            a(href="#")
+                                i.fa.fa-dashboard   首页
+                        li
+                            a(href="#") 作品管理
+                        li.active 列表
+                section.content
+                    div.box-body
+                        div.box
+                            div.box-header.row
+                                div.btn-group.col-sm-5(role="group")
+                                    a.btn.btn-default(href="/admin/works/edit")
+                                        i.fa.fa-plus  新增
+                                    a.btn.btn-default(onclick="edit('/admin/works/edit', '#formList', 0, 'skip')")
+                                        i.fa.fa-file-text-o  编缉
+                                    a.btn.btn-default
+                                        i.fa.fa-search  查看
+                                    a.btn.btn-default(onclick="del('/admin/works/del', '#formList')")
+                                        i.fa.fa-trash   删除
+                            div.box-body
+                                form#formList
+                                    table#tableList.table.table-bordered.table-striped
+                                        thead
+                                            tr
+                                                th
+                                                    input#checkAll.minimal(type="checkbox")
+                                                th  ID
+                                                th  标题
+                                                th  分类
+                                                th  简介
+                                                th  缩略图
+                                                th  添加时间
+                                                th  更新时间
+                                        <tbody>
+                                        each item in data
+                                            tr
+                                                td.checkBox
+                                                    input.minimal(type="checkbox" value="#{item.id}" name="id")
+                                                td #{item.id}
+                                                td 《#{item.title}》
+                                                td #{item.categoryId.name}
+                                                td
+                                                    p(style="max-width: 450px;max-height: 60px; overflow:hidden;") #{item.summary}
+                                                td
+                                                    img(src="#{item.img}" style="max-width: 100px;max-height: 50px;")
+                                                td #{moment(item.add_time).format("YYYY-MM-DD hh:ss:mm")}
+                                                td #{moment(item.update_time).format("YYYY-MM-DD hh:ss:mm")}
+                                        </tbody>
+                script(type="text/javascript").
+                    $(document).ready(function () {
+                        $("#tableList").DataTable({
+                            lengthChange: true,
+                            searching: true,
+                            ordering: true,
+                            paging: true,
+                            lengthMenu: [
+                                [10, 25, 50, -1],
+                                ["10", "25", "50", "所有"]
+                            ],
+                            oLanguage: {
+                                sInfo: "从 _START_ 到 _END_ /共 _TOTAL_ 条数据",
+                                sLengthMenu: "显示 _MENU_ 条",
+                                sSearch: "查找",
+                                oPaginate: {
+                                    sNext: "下一页",
+                                    sPrevious: "上一页",
+                                    sFirst: "首页",
+                                    sEnd: "尾页"
+
+                                }
+                            },
+                            footerCallback: function (row, data, start, end, display) {
+                                $("input").iCheck({
+                                    checkboxClass: "icheckbox_square-blue",
+                                    radioClass: 'iradio_square-blue',
+                                    increaseArea: '20%' /* optional */
+                                });
+
+                                $("#checkAll").on("ifChecked", function (event) {
+                                    $(".checkbox input").iCheck("check");
+                                });
+                                $("#checkAll").on("ifUnChecked", function (event) {
+                                    $(".checkbox input").iCheck("uncheck");
+                                });
+                            }
+                        });
+                    });
+
+        when "edit"
+            div.content-wrapper
+                section.content-header
+                    h1 文章编辑
+                    ol.breadcrumb
+                        li
+                            a(href="#")
+                                i.fa.fa-dashboard 首页
+                        li
+                            a(href="#") 文章管理
+                        li.active   文章编写
+                section.content
+                    div.box
+                        div.row
+                            div.col-sm-6.article-content.clearfix
+                                input.article-title.font-24.form-control(value= data.title placeholder="在这输入标题")
+                                input(type="hidden" name="id" value= data.id)
+                                ul.article-menu.clearfix
+                                    li.pull-left
+                                        a(href="javascript:void(0);" onclick="showImageModal('/imagesUpload', 'callBack');").fa.fa-image
+                                    li.pull-left
+                                        a(href="javascript:void(0);").fa.fa-rotate-left
+                                    li.pull-left
+                                        a(href="javascript:void(0);").fa.fa-rotate-right
+                                    li.pull-left
+                                        //a(href="javascript:void(0);").fa.fa-clock-o
+                                        select.article-category#categoryId(name="categoryId")
+                                            option 随笔
+                                            option 总结
+                                    li.pull-right
+                                        a(href="javascript:void(0);" onclick="publishAnArticle();").fa.fa-mail-forward    发布文章
+                                    li.pull-right
+                                        a(href="javascript:void(0);").fa.fa-save
+                                    li.pull-right
+                                        a(href="javascript:void(0);").fa.fa-columns
+                                    li.pull-right
+                                        a(href="javascript:void(0);").fa.fa-expand
+                                textarea#writeArticle.form-control #{data.content}
+                            div.col-sm-6
+                                form#info.form-horizontal(name="info")
+                                    if data.title
+                                        h1.article-title #{data.title}
+                                    else
+                                        h1.article-title 文章标题
+                                    div#showArticle !{data.contentHtml}
+            script(type="text/javascript").

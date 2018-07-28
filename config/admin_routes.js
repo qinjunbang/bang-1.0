@@ -7,6 +7,7 @@ var User = require('../app/admin/controllers/user');
 var Article = require('../app/admin/controllers/article');
 var ArticleType = require('../app/admin/controllers/articleType');
 var Member = require('../app/admin/controllers/Member');
+var Works = require('../app/admin/controllers/Works');
 
 var bodyParser = require('body-parser');
 var moment = require('moment');
@@ -54,6 +55,7 @@ module.exports = function (app) {
     app.get('/admin/member/edit/:id', Member.edit);
     app.get('/admin/member/edit', Member.edit);
     app.post('/admin/member/uploadImg', Member.uploadImg);
+    app.get('/admin/works', Works.index);
 
 
     //上传图片
